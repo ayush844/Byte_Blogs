@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:wght@700&display=swap');
+
+.routes{
+    color: white;
+    margin-top: 20px;
+}
+
+.main-container{
+    display: flex;
+}
+
+main{
+    padding: 20px;
+}
+
+.top_section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 10px;
+    color: white;
+}
+
+h1.logo{
+    font-size: 55px;
+    line-height: 0;
+    cursor: pointer;
+    font-family: 'Lobster Two', sans-serif;
+    white-space: nowrap;
+    color: white;
+}
+
+.bars{
+    color: white;
+}
+
+
+.searchSection{
+    display: flex;
+    align-items: center;
+    padding: 20px 10px;
+    margin-top: 20px;
+    height: 50px;
+    color: white;
+}
+
+.searchSection > input{
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 13px 18px;
+    margin-left: 15px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(238, 238, 238);
+}
+
+
+.navOptions{
+    display: flex;
+    align-items: center;
+    color: white;
+    gap: 20px;
+    height: 70px;
+    padding: 8px 15px;
+    border-right: 7px solid transparent;
+}
+
+.navOptions:hover{
+    border-right: 7px solid white;
+    transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    background: rgb(45, 51, 89);
+}
+
+.active{
+    border-right: 7px solid white;
+    background: rgb(45, 51, 89);
+}
+
+
+.navOptions>.link_text{
+    font-size: 30px;
+}
+
+.link_text{
+    white-space: nowrap;
+}
+
+
+
