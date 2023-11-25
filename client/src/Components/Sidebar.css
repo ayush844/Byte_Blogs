@@ -2,7 +2,7 @@
 
 .routes{
     color: white;
-    margin-top: 20px;
+    margin-top: 1.3px;
 }
 
 .main-container{
@@ -10,19 +10,19 @@
 }
 
 main{
-    padding: 20px;
+    padding: 1rem;
 }
 
 .top_section{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 10px;
+    padding: 1rem 0.6rem;
     color: white;
 }
 
 h1.logo{
-    font-size: 55px;
+    font-size: 2.7rem;
     line-height: 0;
     cursor: pointer;
     font-family: 'Lobster Two', sans-serif;
@@ -34,51 +34,48 @@ h1.logo{
     color: white;
 }
 
-
 .searchSection{
     display: flex;
     align-items: center;
-    padding: 20px 10px;
-    margin-top: 20px;
-    height: 50px;
+    padding: 1.25rem 0.625rem;
+    margin: 2rem 0;
+    height: 3.125rem;
     color: white;
 }
 
 .searchSection > input{
     font-size: 1rem;
     font-weight: bold;
-    padding: 13px 18px;
-    margin-left: 15px;
+    padding: 0.813rem 1.125rem;
+    margin-left: 0.938rem;
     border: none;
-    border-radius: 10px;
+    border-radius: 0.625rem;
     background-color: rgb(238, 238, 238);
 }
-
 
 .navOptions{
     display: flex;
     align-items: center;
     color: white;
-    gap: 20px;
-    height: 70px;
-    padding: 8px 15px;
-    border-right: 7px solid transparent;
+    gap: 1.25rem;
+    height: 4.375rem;
+    padding: 0.5rem 0.938rem;
+    border-right: 0.5rem solid transparent;
 }
 
 .navOptions:hover{
-    border-right: 7px solid white;
+    border-right: 0.5rem solid white;
     transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
     background: rgb(45, 51, 89);
 }
 
 .active{
-    border-right: 7px solid white;
+    border-right: 0.5rem solid white;
     background: rgb(45, 51, 89);
 }
 
-
 .navOptions>.link_text{
-    font-size: 30px;
+    font-size: 1.875rem;
 }
 
 .link_text{

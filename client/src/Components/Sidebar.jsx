@@ -96,7 +96,7 @@ const Sidebar = ({children}) => {
   return (
     
     <div className="main-container">
-        <motion.div animate={{width: isOpen ? "350px" : "60px", transition:{duration:0.5, type: 'spring', damping:11}}} className='sidebar'>
+        <motion.div animate={{width: isOpen ? "21.875rem" : "3.75rem", transition:{duration:0.5, type: 'spring', damping:11}}} className='sidebar'>
             <div className="top_section">
                 {isOpen && <Link to="/"><motion.h1 variants={showAnimation} initial="hidden" animate="show" exit="hidden"  className='logo'>Byte Blogs</motion.h1></Link>}
                 <div className="bars">

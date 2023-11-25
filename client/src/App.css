@@ -23,7 +23,7 @@ body {
 }
   
 .main_children {
-  padding-left: 70px;
+  padding-left: 4.375rem;
 }
 
 
@@ -31,13 +31,3 @@ a{
   text-decoration: none;
 }
 
-
-@media (max-width: 1000px) {
-  .sidebar {
-    position: fixed;
-  }
-
-  .main_children{
-    padding-left: 70px;
-  }
-}
