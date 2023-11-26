@@ -4,15 +4,18 @@ import './SignIn.css'
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice';
 
 
 const SignIn = () => {
 
   const [formData, setFormData] = useState({});
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const {error, loading} = useSelector((state)=>state.user);
 
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const handleChange = (e)=>{
     setFormData({...formData, [e.target.id]: e.target.value})
@@ -24,8 +27,7 @@ const SignIn = () => {
 
     try {
     
-      setError(null);
-      setLoading(true);
+      dispatch(signInStart());
 
       const res = await fetch('/api/auth/sign-in', {
         method: 'POST',
@@ -38,27 +40,17 @@ const SignIn = () => {
       const data = await res.json();
 
       if(data.success === false){
-        setError(data.message);
-        setLoading(false);
+        dispatch(signInFailure(data.message));
         return;
       }
 
-      console.log(data);
-
-      setError(null);
-      setLoading(false);
+      dispatch(signInSuccess(data));
 
       navigate('/');
 
     } catch (error) {
-      console.log("hello");
-      setError(error.message);
-      setLoading(false);
-
+      dispatch(signInFailure(error.message));
     }
-
-
-
   }
 
 
