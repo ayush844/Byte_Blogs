@@ -6,23 +6,26 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
 }
 
 body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  overflow-y: hidden;
   height: 100%;
   font-family: 'Noto Sans', sans-serif;
 }
 
 .sidebar{
   background-color: rgb(0, 7, 61);
-  height: 100vh;
+  height: 100%;
   position: fixed;
 }
   
 .main_children {
+  overflow-x: hidden;
   padding-left: 4.375rem;
 }
 
@@ -31,3 +34,9 @@ a{
   text-decoration: none;
 }
 
+
+@media (max-width: 1000px) {
+  .main_children {
+    padding-left: 2rem;
+  }
+}

@@ -131,7 +131,7 @@ const Sidebar = ({children}) => {
             </section>
             
         </motion.div>
-        <main className='main_children'>{children}</main>
+        <main className='main_children'  onClick={isOpen ? toggle : null}>{children}</main>
 
     </div>
   )

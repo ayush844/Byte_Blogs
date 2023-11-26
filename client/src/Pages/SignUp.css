@@ -1,0 +1,135 @@
+.signInBox {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(0, 7, 61);
+    padding: 3rem 5rem;
+    color: white;
+    border: none;
+    border-radius: 10px;
+}
+
+
+.signInBox>h2 {
+    font-size: 3rem;
+    font-weight: bold;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid white;
+    border-radius: 5px;
+}
+
+
+.signInBox>.inputDiv {
+    padding: 4rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+
+.signInBox>.inputDiv>.inputRow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    gap: 1rem;
+}
+
+
+.signInBox>.inputDiv>.inputRow>input {
+    padding: 1rem 1.4rem;
+    font-size: 1.5rem;
+    border: none;
+    box-sizing: border-box;
+    outline: none;
+    border-radius: 10px;
+    background-color: #F5F7F8;
+}
+
+.signInBox>.inputDiv>button {
+    font-size: 1.3rem;
+    padding: 1rem 1.3rem;
+    background-color: white;
+    border: none;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.signInBox>.inputDiv>button:hover {
+    opacity: 90%;
+}
+
+.noAccount>p {
+    font-size: 1.4rem;
+    color: #F5F7F8;
+}
+
+
+.noAccount>p>a>span {
+    color: #96EFFF;
+}
+
+
+
+@media (max-width: 1000px) {
+
+    .signInBox {
+        padding: 1rem 0;
+        border-radius: 7px;
+        width: 100vw;
+        height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .signInBox>h2 {
+        font-size: 1.8rem;
+        font-weight: bold;
+        padding: 0.15rem;
+        border-bottom: 2px solid white;
+        border-radius: 5px;
+    }
+
+
+    .signInBox>.inputDiv {
+        padding: 1rem 0;
+        display: flex;
+        gap: 1rem;
+    }
+
+
+    .signInBox>.inputDiv>.inputRow {
+        gap: 0.25rem;
+    }
+
+
+    .signInBox>.inputDiv>.inputRow>input {
+        padding: 0.5rem 0.8rem;
+        font-size: 1rem;
+        border: none;
+        box-sizing: border-box;
+        outline: none;
+        border-radius: 5px;
+        background-color: #F5F7F8;
+    }
+
+    .signInBox>.inputDiv>button {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.8rem;
+        border-radius: 5px;
+    }
+
+    .noAccount>p {
+        font-size: 0.9rem;
+    }
+
+
+
+
+}
