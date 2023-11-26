@@ -21,8 +21,6 @@ const SignIn = () => {
 
 
 
-  console.log(error);
-
   const handleSubmit = async (e)=>{
     e.preventDefault();
 
