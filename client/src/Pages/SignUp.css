@@ -1,5 +1,5 @@
 .signInBox {
-    width: fit-content;
+    width: 80vw;
     height: fit-content;
     display: flex;
     flex-direction: column;
@@ -78,10 +78,10 @@
 @media (max-width: 1000px) {
 
     .signInBox {
-        padding: 1rem 0;
+        padding: 1.2rem 0;
         border-radius: 7px;
         width: 100vw;
-        height: 70vh;
+        height: 80vh;
         display: flex;
         align-items: center;
         justify-content: center;

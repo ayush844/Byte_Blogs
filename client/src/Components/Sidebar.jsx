@@ -105,7 +105,7 @@ const Sidebar = ({children}) => {
             </div>
             <div className="searchSection">
                 <div className="search_icon">
-                    <FaSearch style={{fontSize:'1.75rem', cursor:'pointer'}} />
+                    <FaSearch style={{fontSize:'1.75rem', cursor:'pointer'}} onClick={!isOpen ? toggle : null}/>
                 </div>
                 <AnimatePresence>
                     {isOpen && <motion.input initial='hidden' animate='show' exit='hidden' variants={inputAnimation} placeholder='Search' />}
