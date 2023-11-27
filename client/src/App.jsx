@@ -11,6 +11,7 @@ import Sidebar from './Components/Sidebar';
 import Explore from './Pages/Explore';
 import Bookmarks from './Pages/Bookmarks';
 import Following from './Pages/Following';
+import PrivateRoute from './Components/PrivateRoute';
 
 const App = () => {
   return (
@@ -21,10 +22,13 @@ const App = () => {
         <Route path='/about' element={<About />} />
         <Route path='/sign-in' element={<SignIn/>} />
         <Route path='/sign-up' element={<SignUp />} />
-        <Route path='/profile' element={<Profile />} />
+        <Route element={<PrivateRoute />}>
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/bookmarks' element={<Bookmarks />} />
+          <Route path='/following' element={<Following />} />
+        </Route>
         <Route path='/explore' element={<Explore />} />
-        <Route path='/bookmarks' element={<Bookmarks />} />
-        <Route path='/following' element={<Following />} />
+
       </Routes>
     </Sidebar>
     </BrowserRouter>

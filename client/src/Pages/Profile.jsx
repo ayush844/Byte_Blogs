@@ -5,7 +5,7 @@ import './Profile.css'
 const Profile = () => {
   return (
     <div>
-      profile
+      <h1 style={{fontSize:'5rem'}}>profile</h1>
     </div>
   )
 }

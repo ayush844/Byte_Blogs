@@ -11,10 +11,14 @@ import { RiUserFollowFill } from "react-icons/ri";
 import { FaSignInAlt } from "react-icons/fa";
 import { HiMiniBars3CenterLeft } from "react-icons/hi2";
 import { FaSearch } from "react-icons/fa";
+import { FaRegUserCircle } from "react-icons/fa";
 
 
 import { Link, NavLink } from 'react-router-dom';
 import { useState } from 'react';
+import {useSelector} from 'react-redux'
+import { useEffect } from 'react';
+
 
 
 const routes = [
@@ -34,6 +38,15 @@ const routes = [
         icon: <SiWpexplorer style={{fontSize:'1.75rem'}}/>
     },
     {
+        path: "/sign-in",
+        name: "Sign In",
+        icon: <FaSignInAlt style={{fontSize:'1.75rem'}}/>
+    }
+]
+
+
+let loggedInRoutes = [
+    {
         path: "/bookmarks",
         name: "Bookmarks",
         icon: <FaBookmark  style={{fontSize:'1.75rem'}}/>
@@ -43,11 +56,12 @@ const routes = [
         name: "Following",
         icon: <RiUserFollowFill style={{fontSize:'1.75rem'}} />
     },
-    {
-        path: "/sign-in",
-        name: "Sign In",
-        icon: <FaSignInAlt style={{fontSize:'1.75rem'}}/>
-    }
+        {
+        path: "/profile",
+        name: "Profile",
+        icon: <FaRegUserCircle style={{fontSize:'1.75rem'}} />
+    },
+
 ]
 
 
@@ -56,6 +70,15 @@ const Sidebar = ({children}) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = ()=>setIsOpen(!isOpen);
+
+    const {currentUser} = useSelector((state)=>state.user);
+
+    let updatedRoutes = Array.from(routes);
+
+    if(currentUser){
+        updatedRoutes.pop();
+        updatedRoutes = [...updatedRoutes, ...loggedInRoutes];
+    }
 
     const inputAnimation = {
         hidden:{
@@ -113,7 +136,7 @@ const Sidebar = ({children}) => {
             </div>
             <section className='routes'>
                 {
-                    routes.map((route)=>(
+                    updatedRoutes.map((route)=>(
                         <NavLink activeClassName="active" to={route.path} key={route.name} className="navOptions" >
                             <div className="icons">
                                 {route.icon}
