@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@200&display=swap');
+
+.profilePage{
+    background-color: #191421;
+    width: 100vw;
+    height: 100vh;
+    padding-left: 3rem ;
+    color: white;
+    display: flex;
+    gap: 5rem;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5rem;
+    font-family: 'Smooch Sans', sans-serif;
+}
+
+
+.profilePage > .userInfo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+}
+
+
+.profilePage>.userInfo>img{
+    border-radius: 50%;
+    width: 10rem;
+    height: 10rem;
+    object-fit: cover;
+    border: 3px solid white;
+    padding: 0;
+    cursor: pointer;
+}
+
+.profilePage>.userInfo>h2{
+    font-size: 4.5rem;
+    font-weight: 100;
+}
+
+.profilePage>.follows{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+}
+
+.profilePage>.follows>.following{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.profilePage>.follows>.following>h4{
+    font-size: 3rem;
+    font-weight: 400;
+}
+
+.profilePage>.follows>.following>h3 {
+    font-size: 4rem;
+    font-weight: 200;
+}
+
+.profilePage>.articles{
+    display: flex;
+    align-items: center;
+}
+
+.profilePage>.articles>h4{
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+.profilePage>.articles>span{
+    font-size: 2.5rem;
+    font-weight: 100;
+}
+
+.profilePage > button{
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.8rem 1.3rem;
+    border: none;
+    border-radius: 10px;
+    background-color: white;
+    color: #191421;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.profilePage>button:hover{
+    border: 1px solid white;
+    background-color: #191421;
+    color: white;
+}
+
+
+.profilePage>.others{
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.profilePage>.others>.otherCompnents{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.profilePage>.others>.otherCompnents>span{
+    font-size: 2rem;
+    font-weight: 600;
+    color: red;
+    cursor: pointer;
+}
+
+.profilePage>.others>.otherCompnents>span:hover{
+    opacity: 75%;
+}

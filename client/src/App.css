@@ -26,7 +26,7 @@ body {
   
 .main_children {
   overflow-x: hidden;
-  padding-left: 4.375rem;
+  padding-left: 1rem;
 }
 
 
@@ -37,6 +37,6 @@ a{
 
 @media (max-width: 1000px) {
   .main_children {
-    padding-left: 3rem;
+    padding-left: 2.5rem;
   }
 }
