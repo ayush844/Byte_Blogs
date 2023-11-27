@@ -5,6 +5,7 @@ import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { FaUserCircle } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
+import OAuth from '../Components/OAuth';
 
 
 const SignIn = () => {
@@ -84,6 +85,8 @@ const SignIn = () => {
 
           <button disabled={loading} type='submit' onClick={handleSubmit}>{loading ? "Loading..." : "Sign Up"}</button>
       
+          <OAuth />
+
         </form>  
 
         <div className="noAccount">
@@ -91,6 +94,8 @@ const SignIn = () => {
         </div>
 
         {error && <p style={{color:'red', fontSize:'1rem', display:'flex', flexWrap:'wrap', whiteSpace:'wrap'}}>{error}</p>}
+
+        
 
       </div>
     </div>

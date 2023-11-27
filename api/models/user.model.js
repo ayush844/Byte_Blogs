@@ -13,6 +13,10 @@ const userSchema = new mongoose.Schema({
     password:{
         type: String,
         required: true
+    },
+    avatar:{
+        type: String,
+        default: "https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png"
     }
 }, {timestamps: true});
 

@@ -57,6 +57,7 @@
     font-weight: bold;
     border-radius: 8px;
     cursor: pointer;
+    text-transform: uppercase;
 }
 
 .signInBox>.inputDiv>button:hover{

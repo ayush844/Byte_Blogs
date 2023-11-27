@@ -6,6 +6,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice';
+import OAuth from '../Components/OAuth';
 
 
 const SignIn = () => {
@@ -70,6 +71,8 @@ const SignIn = () => {
           </div>
 
           <button disabled={loading} type='submit' onClick={handleSubmit}>{loading ? "Loading..." : "Sign In"}</button>
+          
+          <OAuth />
         </form>  
 
         <div className="noAccount">
@@ -78,6 +81,7 @@ const SignIn = () => {
 
         {error && <p style={{color:'red', fontSize:'1rem', display:'flex', flexWrap:'wrap', whiteSpace:'wrap'}}>{error}</p>}
 
+        
 
       </div>
     </div>
