@@ -1,12 +1,14 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useRef, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import './UpdateProfile.css'
 import {getDownloadURL, getStorage, ref, uploadBytesResumable} from 'firebase/storage'
 import { app } from '../firebase'
+import { updateUserStart, updateUserSuccess, updateUserFailure } from '../redux/user/userSlice.js'
+
 
 const UpdateProfile = () => {
-  const {currentUser} = useSelector((state)=>state.user);
+  const {currentUser, loading, error} = useSelector((state)=>state.user);
 
   const [file, setFile] = useState(undefined);
   const [filePerc, setFilePerc] = useState(0);
@@ -14,7 +16,11 @@ const UpdateProfile = () => {
 
   const [formData, setFormData] = useState({});
 
+  const [updateSuccess, setUpdateSuccess] = useState(false);
+
   const fileRef = useRef(null);
+
+  const dispatch = useDispatch()
 
   useEffect(()=>{
     if(file){
@@ -46,29 +52,76 @@ const UpdateProfile = () => {
     })
   }
 
+
+
+
+  const handleChange = (e)=>{
+    setFormData({...formData, [e.target.id]: e.target.value});
+  }
+
+  const handleSubmit = async (e)=>{
+    e.preventDefault();
+
+    try {
+
+      dispatch(updateUserStart());
+
+      const res = await fetch(`/api/user/update/${currentUser._id}`,{
+        method: 'POST',
+        headers:{
+          'Content-Type': 'application/JSON',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await res.json();
+
+      if(data.success == false){
+        dispatch(updateUserFailure(data.message));
+        return;
+      }
+
+      dispatch(updateUserSuccess(data));
+      setUpdateSuccess(true);
+
+
+      
+    } catch (error) {
+      dispatch(updateUserFailure(error.message));
+    }
+
+
+
+  }
+
+
   return (
     <div className='updateProfilePage'>
 
         <h1>UPDATE YOUR PROFILE</h1>
 
-        <form>
+        <form onSubmit={handleSubmit}>
 
         <input onChange={(e)=>setFile(e.target.files[0])} type="file" ref={fileRef} hidden accept='image/*'/>
         <img onClick={()=>fileRef.current.click()} src={formData.avatar || currentUser.avatar} alt="profile-pic" />
 
         <p>{fileUploadError ? <span style={{fontSize:'1.1rem', fontWeight:'bold', color:'red'}}>Error in uploading image (image must be leass than 5mb)</span> : filePerc>0 && filePerc<100 ?(<span style={{fontSize:'1.1rem', fontWeight:'bold', color:'green'}}>{`uploading ${filePerc}%`}</span>) : filePerc===100 ? (<span style={{fontSize:'1.1rem', fontWeight:'bold', color:'green'}}>successfully uploaded image</span>) : ""}</p>
 
-        <input type="text" id='username' defaultValue={currentUser.username} className='inputArea' placeholder='username'/>
+        <input type="text" id='username' onChange={handleChange} defaultValue={currentUser.username} className='inputArea' placeholder='username'/>
 
-        <input type="email" id='email' defaultValue={currentUser.email} className='inputArea' placeholder='email'/>
+        <input type="email" id='email' onChange={handleChange} defaultValue={currentUser.email} className='inputArea' placeholder='email'/>
 
-        <input type="password" id='password' className='inputArea' placeholder='password'/>
+        <input type="password" id='password' onChange={handleChange} className='inputArea' placeholder='password'/>
 
-        <button>UPDATE</button>
+        <button disabled={loading} type='submit'>{loading ? "LOADING..." : 'UPDATE'}</button>
+
+        <p style={{fontSize:'1.2rem', fontWeight:'bold', color:'red'}}>{error ? error : ""}</p>
+
+        <p style={{fontSize:'1.2rem', fontWeight:'bold', color:'green'}}>{updateSuccess ? "User is updated successfully": ""}</p>
 
         </form>
 
-
+      
         
     </div>
 
