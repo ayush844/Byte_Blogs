@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@200&display=swap');
+
+.updateProfilePage {
+    background-color: #191421;
+    width: 100vw;
+    height: 100vh;
+    padding-left: 3rem;
+    color: white;
+    display: flex;
+    gap: 5rem;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5rem;
+    font-family: 'Smooch Sans', sans-serif;
+}
+
+.updateProfilePage>h1{
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+
+.updateProfilePage>form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+
+.updateProfilePage>form>img {
+    border-radius: 50%;
+    width: 10rem;
+    height: 10rem;
+    object-fit: cover;
+    border: 3px solid white;
+    padding: 0;
+    cursor: pointer;
+}
+
+.updateProfilePage>form>input{
+    font-size: 2.5rem;
+    padding: 0.8rem 1.3rem;
+    border: 2px solid white;
+    background-color: transparent;
+    border-radius: 10px;
+    color: white;
+}
+
+.updateProfilePage>form>button {
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 0.8rem 1.3rem;
+    border: none;
+    border-radius: 10px;
+    background-color: white;
+    color: #191421;
+    transition: 0.1s ease-in-out;
+    cursor: pointer;
+    margin-top: 3rem;
+}
+
+.updateProfilePage>form>button:hover {
+    border: 1px solid white;
+    background-color: #191421;
+    color: white;
+}
+
+

@@ -4,10 +4,14 @@ import './Profile.css'
 import { useSelector } from 'react-redux'
 import { MdDelete } from "react-icons/md";
 import { FaSignOutAlt } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
+
 
 const Profile = () => {
 
   const {currentUser} = useSelector((state)=>state.user);
+
+  const navigate = useNavigate();
 
 
   return (
@@ -33,7 +37,7 @@ const Profile = () => {
         <h4>articles published: <span>6</span></h4>
       </div>
 
-      <button>UPDATE PROFILE</button>
+      <button onClick={()=> navigate('/updateProfile')}>UPDATE PROFILE</button>
 
       <div className="others">
         <div className="otherCompnents">

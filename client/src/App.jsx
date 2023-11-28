@@ -12,6 +12,7 @@ import Explore from './Pages/Explore';
 import Bookmarks from './Pages/Bookmarks';
 import Following from './Pages/Following';
 import PrivateRoute from './Components/PrivateRoute';
+import UpdateProfile from './Pages/UpdateProfile';
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
         <Route path='/sign-up' element={<SignUp />} />
         <Route element={<PrivateRoute />}>
           <Route path='/profile' element={<Profile />} />
+          <Route path='/updateProfile' element={<UpdateProfile />} />
           <Route path='/bookmarks' element={<Bookmarks />} />
           <Route path='/following' element={<Following />} />
         </Route>
