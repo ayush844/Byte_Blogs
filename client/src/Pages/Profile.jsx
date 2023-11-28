@@ -1,17 +1,45 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import './Profile.css'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { MdDelete } from "react-icons/md";
 import { FaSignOutAlt } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 
+import { deleteUserStart, deleteUserSuccess, deleteUserFailure } from '../redux/user/userSlice.js';
+
 
 const Profile = () => {
 
-  const {currentUser} = useSelector((state)=>state.user);
+  const {currentUser, error} = useSelector((state)=>state.user);
 
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
+
+  const handleDeletUser = async ()=>{
+    try {
+      dispatch(deleteUserStart());
+
+      const res = await fetch(`/api/user/delete/${currentUser._id}`,{
+        method: 'DELETE',
+      })
+
+      const data = await res.json();
+
+      if(data.success == false){
+        dispatch(deleteUserFailure(data.message));
+        return;
+      }
+
+      dispatch(deleteUserSuccess(data))
+
+
+    } catch (error) {
+      dispatch(deleteUserFailure(error.message));
+    }
+  }
 
 
   return (
@@ -41,8 +69,8 @@ const Profile = () => {
 
       <div className="others">
         <div className="otherCompnents">
-          <MdDelete style={{fontSize:'2.5rem', color:'red', cursor:'pointer'}}/>
-          <span>DELETE ACCOUNT</span>
+          <MdDelete onClick={handleDeletUser} style={{fontSize:'2.5rem', color:'red', cursor:'pointer'}}/>
+          <span onClick={handleDeletUser}>DELETE ACCOUNT</span>
         </div>
         <div className="otherCompnents">
           <FaSignOutAlt style={{fontSize:'2.5rem', color:'red', cursor:'pointer'}}/>
@@ -50,6 +78,8 @@ const Profile = () => {
         </div>
         
       </div>
+
+      <p style={{fontSize:'1.2rem', fontWeight:'bold', color:'red'}}>{error ? error : ""}</p>
 
 
 
