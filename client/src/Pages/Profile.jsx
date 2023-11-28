@@ -6,7 +6,7 @@ import { MdDelete } from "react-icons/md";
 import { FaSignOutAlt } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 
-import { deleteUserStart, deleteUserSuccess, deleteUserFailure } from '../redux/user/userSlice.js';
+import { deleteUserStart, deleteUserSuccess, deleteUserFailure, signOutUserStart, signOutUserFailure, signOutUserSuccess,  } from '../redux/user/userSlice.js';
 
 
 const Profile = () => {
@@ -42,6 +42,30 @@ const Profile = () => {
   }
 
 
+  const handleSignOut = async ()=>{
+    try {
+      dispatch(signOutUserStart());
+
+      const res = await fetch(`/api/auth/sign-out`,{
+        method: 'POST',
+      })
+
+      const data = await res.json();
+
+      if(data.success == false){
+        dispatch(signOutUserFailure(data.message));
+        return;
+      }
+
+      dispatch(signOutUserSuccess(data))
+
+
+    } catch (error) {
+      dispatch(signOutUserFailure(error.message));
+    }
+  }
+
+
   return (
     <div className='profilePage'>
 
@@ -73,8 +97,8 @@ const Profile = () => {
           <span onClick={handleDeletUser}>DELETE ACCOUNT</span>
         </div>
         <div className="otherCompnents">
-          <FaSignOutAlt style={{fontSize:'2.5rem', color:'red', cursor:'pointer'}}/>
-          <span>SIGN OUT</span>
+          <FaSignOutAlt onClick={handleSignOut} style={{fontSize:'2.5rem', color:'red', cursor:'pointer'}}/>
+          <span onClick={handleSignOut}>SIGN OUT</span>
         </div>
         
       </div>
