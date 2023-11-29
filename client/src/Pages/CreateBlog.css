@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
+
+
+.createBlogPage {
+    width: 100vw;
+    height: 100vh;
+    padding-left: 2rem;
+    color: white;
+    display: flex;
+    gap: 5rem;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5rem;
+}
+
+
+.createBlogPage > h1{
+    font-family: 'Nova Square', sans-serif;
+    font-size: 3.5rem;
+    font-weight: bold;
+}
+
+
+.createBlogPage > form{
+     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.createBlogPage>form>input{
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 1rem 1.8rem;
+    border: 2px solid #ED5AB3;
+    border-radius: 10px;
+    width: 80%;
+    background-color: white;
+    color: black;
+    outline: none;
+}
+
+.createBlogPage>form>button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 1.5rem;
+    font-size: 1.4rem;
+    font-weight: bold;
+    width: 80%;
+    border-radius: 10px;
+    border: 3px solid #ED5AB3;
+    background-color: transparent;
+    color: #ED5AB3;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    margin-top: 3rem;
+}
+
+.createBlogPage>form>button:hover {
+    border: 3px solid transparent;
+    background-color: #ED5AB3;
+    color: #191421;
+}
+
+.createBlogPage>form>.category{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.createBlogPage>form>.category>label{
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ED5AB3;
+}
+
+.createBlogPage>form>.category>.categoryArea{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+
+.createBlogPage>form>.category>.categoryArea>.typeOptions{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background-color: #ED5AB3;
+    padding: 1rem 1.4rem;
+    border: none;
+    color: #191421;
+    border-radius: 10px;
+}
+
+.createBlogPage>form>.category>.categoryArea>.typeOptions>input[type="radio"] {
+    transform: scale(1.5);
+    color: #191421;
+}
+
+.createBlogPage>form>.category>.categoryArea>.typeOptions>span{
+    font-size: 1.3rem;
+    color: #191421;
+    font-weight: bold;
+}
+
+
+
+/* input[type="radio"] {
+    transform: scale(1.5);
+} */

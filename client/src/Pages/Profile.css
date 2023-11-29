@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@200&display=swap');
 
 .profilePage{
-    background-color: #191421;
     width: 100vw;
     height: 100vh;
     padding-left: 3rem ;
@@ -93,6 +92,28 @@
     border: 1px solid white;
     background-color: #191421;
     color: white;
+}
+
+.profilePage>button.create{
+    font-size: 1rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.3rem;
+    border: 3px solid white;
+    border-radius: 10px;
+    background-color: transparent;
+    color: white;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+
+.profilePage>button.create:hover{
+    color: #191421;
+    background-color: white;
+    border: none;
 }
 
 

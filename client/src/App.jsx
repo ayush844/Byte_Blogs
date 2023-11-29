@@ -13,6 +13,7 @@ import Bookmarks from './Pages/Bookmarks';
 import Following from './Pages/Following';
 import PrivateRoute from './Components/PrivateRoute';
 import UpdateProfile from './Pages/UpdateProfile';
+import CreateBlog from './Pages/CreateBlog';
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
         <Route element={<PrivateRoute />}>
           <Route path='/profile' element={<Profile />} />
           <Route path='/updateProfile' element={<UpdateProfile />} />
+          <Route path='/createBlog' element={<CreateBlog />} />
           <Route path='/bookmarks' element={<Bookmarks />} />
           <Route path='/following' element={<Following />} />
         </Route>

@@ -12,6 +12,7 @@ import { FaSignInAlt } from "react-icons/fa";
 import { HiMiniBars3CenterLeft } from "react-icons/hi2";
 import { FaSearch } from "react-icons/fa";
 import { FaRegUserCircle } from "react-icons/fa";
+import { FaFeather } from "react-icons/fa";
 
 
 import { Link, NavLink } from 'react-router-dom';
@@ -46,6 +47,11 @@ const routes = [
 
 
 let loggedInRoutes = [
+    {
+        path: "/createBlog",
+        name: "Write",
+        icon: <FaFeather style={{fontSize:'1.75rem'}}/>
+    },
     {
         path: "/bookmarks",
         name: "Bookmarks",

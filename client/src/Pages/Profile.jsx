@@ -4,6 +4,7 @@ import './Profile.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { MdDelete } from "react-icons/md";
 import { FaSignOutAlt } from "react-icons/fa";
+import { FaFeather } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 
 import { deleteUserStart, deleteUserSuccess, deleteUserFailure, signOutUserStart, signOutUserFailure, signOutUserSuccess,  } from '../redux/user/userSlice.js';
@@ -89,7 +90,10 @@ const Profile = () => {
         <h4>articles published: <span>6</span></h4>
       </div>
 
-      <button onClick={()=> navigate('/updateProfile')}>UPDATE PROFILE</button>
+
+      <button className='create' onClick={()=> navigate('/createBlog')}><FaFeather style={{fontSize:'2rem', color:'#ED5AB3'}} /> CREATE A BLOG</button>   
+
+      <button onClick={()=> navigate('/updateProfile')}>UPDATE PROFILE</button>   
 
       <div className="others">
         <div className="otherCompnents">
