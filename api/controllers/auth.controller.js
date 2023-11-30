@@ -38,7 +38,7 @@ export const signIn = async(req, res, next)=>{
 
         const {password:pass, ...rest} = validUser._doc;
 
-        res.cookie("access_token", token, {httpOnly: true}).send(rest).status(200);
+        res.cookie("access_token", token, {httpOnly: true}).json(rest).status(200);
 
     } catch (error) {
         console.log("he he he")
@@ -54,7 +54,7 @@ export const google = async(req, res, next)=>{
         if(user){
             const token = jwt.sign({id: user._id}, process.env.JWT_SECRET);
             const {password:pass, ...rest} = user._doc;
-            res.cookie("access_token", token, {httpOnly: true}).send(rest).status(200);
+            res.cookie("access_token", token, {httpOnly: true}).json(rest).status(200);
         }else{
             const generatedPassword = Math.random().toString(36).slice(-8) + Math.random().toString(36).slice(-8);
             const hashedPassword = bcryptjs.hashSync(generatedPassword, 10);
@@ -66,10 +66,7 @@ export const google = async(req, res, next)=>{
 
             const {password:pass, ...rest} = newUser._doc;
 
-            res.cookie("access_token", token, {httpOnly: true}).send(rest).status(200);
-
-
-
+            res.cookie("access_token", token, {httpOnly: true}).json(rest).status(200);
 
 
         }

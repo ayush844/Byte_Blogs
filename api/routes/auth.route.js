@@ -11,7 +11,7 @@ router.post("/sign-in", signIn);
 
 router.post("/google", google);
 
-router.post("/sign-out",verifyToken, signOut);
+router.post("/sign-out", signOut);
 
 
 export default router;
