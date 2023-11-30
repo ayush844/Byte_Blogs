@@ -127,7 +127,7 @@ const Sidebar = ({children}) => {
     <div className="main-container">
         <motion.div animate={{width: isOpen ? "21.875rem" : "3.75rem", transition:{duration:0.5, type: 'spring', damping:11}}} className='sidebar'>
             <div className="top_section">
-                {isOpen && <Link to="/"><motion.h1 variants={showAnimation} initial="hidden" animate="show" exit="hidden"  className='logo'>Byte Blogs</motion.h1></Link>}
+                {isOpen && <Link to="/"><motion.h1 variants={showAnimation} initial="hidden" animate="show" exit="hidden"  className='logo' onClick={toggle}>Byte Blogs</motion.h1></Link>}
                 <div className="bars">
                     <HiMiniBars3CenterLeft style={{fontSize:'2.5rem', cursor:'pointer'}} onClick={toggle} />
                 </div>

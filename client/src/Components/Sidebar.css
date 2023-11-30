@@ -9,6 +9,10 @@
     display: flex;
 }
 
+.main-container > .sidebar{
+    z-index: 100;
+}
+
 main{
     padding-left: 0.5rem;
 }

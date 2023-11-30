@@ -113,6 +113,65 @@
 
 
 
-/* input[type="radio"] {
-    transform: scale(1.5);
-} */
+@media (max-width: 1000px) {
+        .createBlogPage {
+            gap: 2rem;
+            padding-top: 2rem;
+            padding-left: 1.2rem;
+            padding-right: 1.3rem;
+        }
+    
+    
+        .createBlogPage>h1 {
+            font-size: 2rem;
+        }
+    
+    
+        .createBlogPage>form {
+            gap: 0.55rem;
+        }
+    
+        .createBlogPage>form>input {
+            font-size: 0.75rem;
+            padding: 0.5rem 0.8rem;
+            border: 1px solid #ED5AB3;
+            width: 70%;
+        }
+    
+        .createBlogPage>form>button {
+            padding: 0.7rem 1.1rem;
+            font-size: 1rem;
+            width: 65%;
+            border: 1.5px solid #ED5AB3;
+            margin-top: 1.5rem;
+        }
+    
+    
+        .createBlogPage>form>.category {
+            gap: 1rem;
+        }
+    
+        .createBlogPage>form>.category>label {
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+    
+        .createBlogPage>form>.category>.categoryArea {
+            gap: 0.8rem;
+        }
+    
+    
+        .createBlogPage>form>.category>.categoryArea>.typeOptions {
+            gap: 0.5rem;
+            padding: 0.6rem 1rem;
+        }
+    
+        .createBlogPage>form>.category>.categoryArea>.typeOptions>input[type="radio"] {
+            transform: scale(1.1);
+            color: #191421;
+        }
+    
+        .createBlogPage>form>.category>.categoryArea>.typeOptions>span {
+            font-size: 0.7rem;
+        }
+}

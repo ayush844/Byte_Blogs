@@ -52,7 +52,7 @@ const CreateBlog = () => {
         <input style={{fontSize:'1rem'}} type='text' placeholder='Summary' id='summary' />
         <input style={{cursor:'pointer'}} type='file' accept='image/*' placeholder='cover image'/>
         
-        <ReactQuill modules={modules} theme="snow" style={{color:'black', backgroundColor:'white', padding:'0', border:'1px solid #ED5AB3'}}/>
+        <ReactQuill modules={modules} theme="snow" style={{color:'black', backgroundColor:'white', padding:'0', border:'1px solid #ED5AB3', width:'70%'}}/>
 
 
         <div className="category">
