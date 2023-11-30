@@ -97,11 +97,11 @@ const Profile = () => {
 
       <div className="others">
         <div className="otherCompnents">
-          <MdDelete onClick={handleDeletUser} style={{fontSize:'2.5rem', color:'red', cursor:'pointer'}}/>
+          <MdDelete onClick={handleDeletUser} style={{fontSize:'1.8rem', color:'red', cursor:'pointer'}}/>
           <span onClick={handleDeletUser}>DELETE ACCOUNT</span>
         </div>
         <div className="otherCompnents">
-          <FaSignOutAlt onClick={handleSignOut} style={{fontSize:'2.5rem', color:'red', cursor:'pointer'}}/>
+          <FaSignOutAlt onClick={handleSignOut} style={{fontSize:'1.8rem', color:'red', cursor:'pointer'}}/>
           <span onClick={handleSignOut}>SIGN OUT</span>
         </div>
         

@@ -66,4 +66,41 @@
     color: white;
 }
 
-
+@media (max-width: 1000px) {
+        .updateProfilePage {
+            padding-left: 1.1rem;
+            gap: 3rem;
+            padding-top: 2rem;
+            padding-right: 1.3rem;
+        }
+    
+        .updateProfilePage>h1 {
+            font-size: 2.6rem;
+        }
+    
+    
+        .updateProfilePage>form {
+            gap: 1rem;
+        }
+    
+    
+        .updateProfilePage>form>img {
+            border-radius: 50%;
+            width: 7rem;
+            height: 7rem;
+            border: 1px solid white;
+        }
+    
+        .updateProfilePage>form>input {
+            font-size: 1rem;
+            padding: 0.6rem 1rem;
+            border: 1px solid white;
+        }
+    
+        .updateProfilePage>form>button {
+            font-size: 1rem;
+            padding: 0.6rem 1.2rem;
+            margin-top: 2rem;
+        }
+    
+}
