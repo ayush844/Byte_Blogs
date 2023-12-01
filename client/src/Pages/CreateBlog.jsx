@@ -1,20 +1,65 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './CreateBlog.css'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css';
+import { app } from '../firebase.js';
 
+
+import {getDownloadURL, getStorage, ref, uploadBytesResumable} from 'firebase/storage';
 
 const CreateBlog = () => {
 
+    const [file, setFile] = useState(undefined);
+    const [filePerc, setFilePerc] = useState(0);
+    const [fileUploadError, setFileUploadError] = useState(false);
+    const [formData, setFormData] = useState({});
 
-      // State to manage the selected value
-  const [selectedValue, setSelectedValue] = useState('');
+    const [uploading, setUploading] = useState(false);
 
-  // Handler function to update the selected value
-  const handleDropdownChange = (event) => {
-    setSelectedValue(event.target.value);
-  };
+    console.log(uploading);
+
+    const handleFileUpload = (file)=>{
+        setUploading(true);
+        if(file){
+            
+            const storage = getStorage(app);
+            const fileName = new Date().getTime() + file.name;
+            const storageRef = ref(storage, fileName);
+            const uploadTask = uploadBytesResumable(storageRef, file);
+
+            uploadTask.on('state_changed', (snapshot)=>{
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes)*100;
+                setFilePerc(Math.ceil(progress));
+            },
+            (err)=>{
+                setFileUploadError(err);
+                setUploading(false);
+            },
+            ()=>{
+                getDownloadURL(uploadTask.snapshot.ref).then(
+                    (downloadURL)=>{
+                        setFormData({...formData, cover: downloadURL});
+                    }
+                )
+            }
+            )
+            setUploading(false);
+        }else{
+            setFileUploadError("upload a cover image");
+            setUploading(false);
+        }
+
+
+    }
+
+
+    const handleDeleteCover = ()=>{
+        setFormData({...formData,
+            cover: undefined
+        })
+    }
+
 
 //-----------------------------------------------------------------------------------------
     var toolbarOptions = [
@@ -50,7 +95,23 @@ const CreateBlog = () => {
       <form>
         <input type="text" placeholder='Title' id='title' />
         <input style={{fontSize:'1rem'}} type='text' placeholder='Summary' id='summary' />
-        <input style={{cursor:'pointer'}} type='file' accept='image/*' placeholder='cover image'/>
+        <div className="imageBox">
+            <input style={{cursor:'pointer'}} type='file' accept='image/*' placeholder='cover image' onChange={(e)=>setFile(e.target.files[0])}/>
+            <button onClick={()=>handleFileUpload(file)} className='imgBtn' type='button' disabled={uploading}>{uploading ? "uploading...":"UPLOAD"}</button>
+        </div>
+         <p style={{color: 'red', fontSize: '1rem'}}>{fileUploadError && fileUploadError}</p>
+         {
+            formData.cover && (
+            <div style={{display: 'flex', flexDirection: 'row', gap:'1.4rem', alignItems: 'center', justifyContent: 'space-between', border: '1px solid #ED5AB3', borderRadius: '10px', padding: '0.1rem 0.3rem', margin: '0.5rem 0', backgroundColor:'transparent'}}>
+
+                <img src={formData.cover} alt="cover image" style={{width: '10rem', height: '8rem', objectFit: 'cover', marginBottom: '0.5rem'}} />
+
+                <button type='button' style={{color: 'red', backgroundColor: 'transparent', border: 'none', fontSize: '1.3rem', cursor: 'pointer', fontWeight:'bold' }} onClick={handleDeleteCover} > DELETE </button>
+
+            </div>
+            )
+         }
+        
         
         <ReactQuill modules={modules} theme="snow" style={{color:'black', backgroundColor:'white', padding:'0', border:'1px solid #ED5AB3', width:'70%'}}/>
 
