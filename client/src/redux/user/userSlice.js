@@ -59,7 +59,7 @@ const userSlice = createSlice({
     signOutUserFailure: (state, action)=>{
         state.loading=false;
         state.error=action.payload;
-    }
+    },
 
   },
 })

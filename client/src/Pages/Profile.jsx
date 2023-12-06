@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Profile.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { MdDelete } from "react-icons/md";
@@ -8,7 +8,10 @@ import { FaFeather } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 
 import { deleteUserStart, deleteUserSuccess, deleteUserFailure, signOutUserStart, signOutUserFailure, signOutUserSuccess,  } from '../redux/user/userSlice.js';
+import BlogCardAuthor from '../Components/BlogCardAuthor.jsx';
 
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
 const Profile = () => {
 
@@ -18,6 +21,33 @@ const Profile = () => {
 
   const dispatch = useDispatch();
 
+  const [authorBlogError, setAuthorBlogError] = useState(false);
+
+  const [authorBlogSuccess, setAuthorBlogSuccess] = useState(false);
+
+  const [authorBlog, setAuthorBlog] = useState(undefined);
+
+//................................................................
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 4
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 700 },
+      items: 2
+    },
+    mobile: {
+      breakpoint: { max: 700, min: 0 },
+      items: 1
+    }
+  };
+//.....................................................................
 
   const handleDeletUser = async ()=>{
     try {
@@ -66,6 +96,39 @@ const Profile = () => {
     }
   }
 
+  useEffect(()=>{
+    const getAuthorsBlog = async()=>{
+      setAuthorBlogError(false);
+      try {
+        const res = await fetch(`/api/user/getBlogs/${currentUser._id}`,{
+          method: 'GET',
+        })
+
+        const data = await res.json();
+
+        if(data.success === false){
+          setAuthorBlogError(true);
+          return;
+        }
+
+        setAuthorBlogError(false);
+        setAuthorBlogSuccess(true);
+        setAuthorBlog(data);
+
+        console.log(authorBlog);
+
+      } catch (error) {
+
+        console.log(error);
+        setAuthorBlogError(true);  
+        setAuthorBlogSuccess(false);
+
+      }
+    }
+
+    getAuthorsBlog();
+  },[authorBlogSuccess]);
+
 
   return (
     <div className='profilePage'>
@@ -86,9 +149,26 @@ const Profile = () => {
         </div>
       </div>
 
-      <div className="articles">
-        <h4>articles published: <span>6</span></h4>
+      {authorBlogSuccess && (
+        <div className="articles">
+          <h4>articles published: <span>{authorBlog.length}</span></h4>
+        </div>
+      )}
+
+      <div className="blogsPublished">
+      
       </div>
+
+      {authorBlogSuccess && authorBlog.length > 0 && 
+        <div className="personalBlogs" style={{width:'80%'}}>
+          <Carousel responsive={responsive}>
+          {authorBlog.map(blog => (
+            <BlogCardAuthor key={blog._id} blog={blog} />
+          ))}
+          </Carousel>
+        </div>
+      }
+
 
 
       <button className='create' onClick={()=> navigate('/createBlog')}><FaFeather style={{fontSize:'2rem', color:'#ED5AB3'}} /> CREATE A BLOG</button>   
@@ -103,8 +183,7 @@ const Profile = () => {
         <div className="otherCompnents">
           <FaSignOutAlt onClick={handleSignOut} style={{fontSize:'1.8rem', color:'red', cursor:'pointer'}}/>
           <span onClick={handleSignOut}>SIGN OUT</span>
-        </div>
-        
+        </div>  
       </div>
 
       <p style={{fontSize:'1.2rem', fontWeight:'bold', color:'red'}}>{error ? error : ""}</p>
