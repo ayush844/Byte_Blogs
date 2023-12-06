@@ -20,8 +20,8 @@ const CreateBlog = () => {
         summary:'',
         blogBody:'',
         category:'others',
-        userRef:'',
-        cover:''
+        cover:'',
+        userRef:''
     });
 
     const [uploading, setUploading] = useState(false);
@@ -35,6 +35,7 @@ const CreateBlog = () => {
 
     const navigate = useNavigate();
 
+    console.log(currentUser);
     console.log(formData);
 
     const handleFileUpload = (file)=>{
