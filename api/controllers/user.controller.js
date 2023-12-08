@@ -59,3 +59,34 @@ export const getUserBlog = async(req, res, next)=>{
         next(error);
     }
 }
+
+export const followUnfollowUser = async(req, res, next)=>{
+
+    if(req.body._id === req.params.id) return next(errorHandler(403, "you can not follow your own account"));
+
+    try {
+
+        const currentUser = await User.findById(req.body._id);
+
+        const userToFollowUnfollow = await User.findById(req.params.id);
+
+        if(!userToFollowUnfollow){
+            return next(errorHandler(403, "user account not found"));
+        }
+
+        const isFollowing = currentUser.following.includes(req.params.id);
+
+        if(isFollowing){
+            await User.findByIdAndUpdate(currentUser._id, {$pull: {following: userToFollowUnfollow._id}});
+            await User.findByIdAndUpdate(userToFollowUnfollow._id, {$pull: {followers: currentUser._id}});
+            return res.status(200).json({message: "user unfollowed successfully"});
+        }else{
+            await User.findByIdAndUpdate(currentUser._id, {$addToSet: {following: userToFollowUnfollow._id}});
+            await User.findByIdAndUpdate(userToFollowUnfollow._id, {$addToSet: {followers: currentUser._id}});
+            return res.status(200).json({message: "user followed successfully"});
+        }
+
+    } catch (error) {
+        next(error);
+    }
+}
