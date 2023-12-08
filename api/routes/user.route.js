@@ -1,5 +1,5 @@
 import express from "express";
-import { deleteUser, followUnfollowUser, getUserBlog, test, updateUserInfo } from "../controllers/user.controller.js";
+import { deleteUser, followUnfollowUser, getFollowings, getUserBlog, test, updateUserInfo } from "../controllers/user.controller.js";
 import { verifyToken } from "../utils/verifyUser.js";
 
 const router = express.Router();
@@ -12,8 +12,9 @@ router.delete('/delete/:id',verifyToken, deleteUser);
 
 router.get("/getBlogs/:id", getUserBlog);
 
-
 router.post("/follow/:id", verifyToken, followUnfollowUser);
+
+router.get("/following/:id", verifyToken, getFollowings);
  
 
 export default router;

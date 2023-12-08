@@ -60,6 +60,7 @@ export const getUserBlog = async(req, res, next)=>{
     }
 }
 
+
 export const followUnfollowUser = async(req, res, next)=>{
 
     if(req.body._id === req.params.id) return next(errorHandler(403, "you can not follow your own account"));
@@ -85,6 +86,21 @@ export const followUnfollowUser = async(req, res, next)=>{
             await User.findByIdAndUpdate(userToFollowUnfollow._id, {$addToSet: {followers: currentUser._id}});
             return res.status(200).json({message: "user followed successfully"});
         }
+
+    } catch (error) {
+        next(error);
+    }
+}
+
+
+export const getFollowings = async(req, res, next) => {
+
+    const currentUser = await User.findById(req.params.id);
+
+    try {
+        const updatedCurrentUser = await currentUser.populate('following', "_id username email avatar");
+
+        res.status(200).json(updatedCurrentUser.following);
 
     } catch (error) {
         next(error);
