@@ -63,11 +63,12 @@ export const getUserBlog = async(req, res, next)=>{
 
 export const followUnfollowUser = async(req, res, next)=>{
 
-    if(req.body._id === req.params.id) return next(errorHandler(403, "you can not follow your own account"));
+
+    if(req.user.id === req.params.id) return next(errorHandler(403, "you can not follow your own account"));
 
     try {
 
-        const currentUser = await User.findById(req.body._id);
+        const currentUser = await User.findById(req.user.id);
 
         const userToFollowUnfollow = await User.findById(req.params.id);
 
