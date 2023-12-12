@@ -1,20 +1,23 @@
 .authorCard{
-    width: 20rem;
-    height: 30rem;
-    background: rgba(255, 255, 255, 0.05);
-    margin: 2rem;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 20rem;
+    height: 30rem;
+    margin: 0.7rem;
     gap: 1rem;
-    flex-direction: column;
     padding: 0rem 0rem 0.5rem 0;
     border-radius: 10px;
     border: 3px solid #ED5AB3;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    color: white;
+        
     overflow: hidden;
     transition: 0.2s ease-in-out;
-    color: white;
+    
 }
 
 .authorCard:hover{
@@ -29,6 +32,7 @@
     justify-content: center;
     opacity: 0.5;
     transition: 0.5s;
+    width: 100%;
 }
 
 .authorCard:hover .content{
@@ -36,21 +40,27 @@
 }
 
 
-.authorCard > .content > .imgBx{
-    width: 12rem;
-    height: 12rem;
+/* .authorCard > .content > .imgBox{
+    width: 100%;
+    height: 20rem;
+    /* overflow: hidden; */
+    /* border: 10px solid rgba(0, 0, 0, 0.25); */
+/* } */ */
+
+.authorCard > .content > .imgBox{
+    width: 100%;
+    height: 20rem;
+    object-fit: cover;
     overflow: hidden;
-    border: 10px solid rgba(0, 0, 0, 0.25);
 }
 
-
-.authorCard > .content > .imgBx > img{
-    top: 0;
-    left: 0;
+.authorCard > .content > .imgBox >img{
     width: 100%;
     height: 100%;
     object-fit: cover;
+    overflow: hidden;
 }
+
 
 .authorCard > .content > .contentBox{
     display: flex;
@@ -120,7 +130,9 @@
 @media (max-width: 1000px) {
 
     .authorCard{
+        margin: 0;
         gap: 0.35rem;
+        width: 18rem;
     }
 
     .authorCard > .content > .contentBox > h3{

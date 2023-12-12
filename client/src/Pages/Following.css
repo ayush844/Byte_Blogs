@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@700&display=swap');
 
 .followingPage{
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     overflow: hidden;
     overflow-y: scroll;
-    padding-left: 1rem ;
+    padding-left: 0.5rem ;
     color: white;
     display: flex;
     gap: 5rem;
@@ -32,12 +32,13 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 2rem;
+    justify-content: center;
 }
 
 
 @media (max-width: 1000px) {
     .followingPage > .followingCardBox{
-        width: 90%;
+        width: 85%;
         margin-left: 0;
         display: flex;
         flex-direction: row;
