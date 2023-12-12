@@ -1,6 +1,7 @@
 import React from 'react'
 import './FollowingCard.css'
 import { MdOutlineEmail } from "react-icons/md";
+import { Link } from 'react-router-dom';
 
 const FollowingCard = ({following}) => {
   return (
@@ -14,7 +15,7 @@ const FollowingCard = ({following}) => {
         </div>
 
         <div className="button">
-            <button>VIEW PROFILE</button>
+            <Link to={`/author/${following._id}`} style={{textDecoration:'none'}}><button>VIEW PROFILE</button></Link>
         </div>
         
     </div>

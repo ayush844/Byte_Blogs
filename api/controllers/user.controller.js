@@ -121,3 +121,23 @@ export const getFollowings = async(req, res, next) => {
     }
     
 }
+
+
+export const getAuthor = async(req, res, next) => {
+
+    try {
+        const author = await User.findById(req.params.id);
+
+        if(!author){
+            return next(errorHandler(403, "user account not found"));
+        }
+
+        const {password,...rest} = author._doc;
+
+        res.status(200).json(rest);
+
+    } catch (error) {
+        next(error);
+    }
+    
+}

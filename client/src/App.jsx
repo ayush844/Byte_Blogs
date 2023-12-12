@@ -14,6 +14,7 @@ import Following from './Pages/Following';
 import PrivateRoute from './Components/PrivateRoute';
 import UpdateProfile from './Pages/UpdateProfile';
 import CreateBlog from './Pages/CreateBlog';
+import Author from './Pages/Author';
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
         <Route path='/about' element={<About />} />
         <Route path='/sign-in' element={<SignIn/>} />
         <Route path='/sign-up' element={<SignUp />} />
+        <Route path='/author/:id' element={<Author />} />
         <Route element={<PrivateRoute />}>
           <Route path='/profile' element={<Profile />} />
           <Route path='/updateProfile' element={<UpdateProfile />} />

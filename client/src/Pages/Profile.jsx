@@ -49,6 +49,9 @@ const Profile = () => {
   };
 //.....................................................................
 
+  console.log(currentUser.following.length);
+
+
   const handleDeletUser = async ()=>{
     try {
       dispatch(deleteUserStart());
@@ -141,11 +144,11 @@ const Profile = () => {
       <div className="follows">
         <div className="following">
           <h4>FOLLOWING</h4>
-          <h3>132</h3>
+          <h3>{currentUser.following.length}</h3>
         </div>
         <div className="following">
           <h4>FOLLOWERS</h4>
-          <h3>546</h3>
+          <h3>{currentUser.followers.length}</h3>
         </div>
       </div>
 

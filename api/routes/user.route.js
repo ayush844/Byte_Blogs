@@ -1,5 +1,5 @@
 import express from "express";
-import { deleteUser, followUnfollowUser, getFollowings, getUserBlog, test, updateUserInfo } from "../controllers/user.controller.js";
+import { deleteUser, followUnfollowUser, getAuthor, getFollowings, getUserBlog, test, updateUserInfo } from "../controllers/user.controller.js";
 import { verifyToken } from "../utils/verifyUser.js";
 
 const router = express.Router();
@@ -15,6 +15,8 @@ router.get("/getBlogs/:id", getUserBlog);
 router.post("/follow/:id", verifyToken, followUnfollowUser);
 
 router.get("/following/:id", verifyToken, getFollowings);
+
+router.get("/getAuthor/:id", getAuthor);
  
 
 export default router;
