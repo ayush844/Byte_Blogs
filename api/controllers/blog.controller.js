@@ -79,3 +79,21 @@ export const likeDislikeBlog = async(req, res, next)=>{
         next(error);
     }
 }
+
+export const getLikes = async(req, res, next)=>{
+
+    try {
+
+        const blog = await Blog.findById(req.params.id);
+
+        if(!blog){
+            return next(errorHandler(403, "blog not found"));
+        }
+
+        res.status(200).json(blog.likes);
+        
+
+    } catch (error) {
+        next(error);
+    }
+}

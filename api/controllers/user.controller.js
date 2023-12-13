@@ -169,3 +169,21 @@ export const saveUnsaveBlog = async(req, res, next)=>{
         next(error);
     }
 }
+
+
+
+export const getBookmark = async(req, res, next) => {
+
+    try {
+
+        const currentUser = await User.findById(req.user.id);
+
+        const updatedCurrentUser = await currentUser.populate('bookmarks', "_id title summary cover category userRef");
+
+        res.status(200).json(updatedCurrentUser.bookmarks);
+
+    } catch (error) {
+        next(error);
+    }
+    
+}
