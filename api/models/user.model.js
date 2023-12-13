@@ -27,7 +27,11 @@ const userSchema = new mongoose.Schema({
     following: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-      }]
+      }],
+    bookmarks: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Blog',
+    }]
 
 }, {timestamps: true});
 

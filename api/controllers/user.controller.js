@@ -141,3 +141,31 @@ export const getAuthor = async(req, res, next) => {
     }
     
 }
+
+
+export const saveUnsaveBlog = async(req, res, next)=>{
+
+    try {
+
+        const currentUser = await User.findById(req.user.id);
+
+        const blog = await Blog.findById(req.params.id);
+
+        if(!blog){
+            return next(errorHandler(403, "blog not found"));
+        }
+
+        const isSaved = currentUser.bookmarks.includes(req.params.id);
+
+        if(isSaved) {
+            await User.findByIdAndUpdate(currentUser._id, {$pull: {bookmarks: blog._id}});
+            return res.status(200).json({message: "blog removed from bookmarks"});
+        }else{
+            await User.findByIdAndUpdate(currentUser._id, {$addToSet: {bookmarks: blog._id}});
+            return res.status(200).json({message: "blog added to bookmarks"});
+        }
+
+    } catch (error) {
+        next(error);
+    }
+}
