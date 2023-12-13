@@ -33,9 +33,28 @@
 }
 
 .profilePage>.userInfo>h2{
-    font-size: 4.5rem;
+    font-size: 3rem;
     font-weight: 100;
 }
+
+.profilePage > button.followUnfollowBtn{
+    padding: 0.6rem 1.2rem;
+    border: 3px solid #ED5AB3;
+    border-radius: 10px;
+    background-color: transparent;
+    color: #ED5AB3;
+    font-weight: bold;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+.profilePage > button.followUnfollowBtn:hover{
+    background-color: #ED5AB3;
+    color: white;
+}
+
 
 .profilePage>.follows{
     display: flex;
@@ -76,12 +95,15 @@
     font-weight: 100;
 }
 
-
+.profilePage > .personalBlogs{
+    padding-bottom: 3rem;
+}
 
 
 
 
 @media (max-width: 1000px) {
+    
         .profilePage {
             padding-left: 1.1rem;
             gap: 3rem;
@@ -106,6 +128,13 @@
         .profilePage>.userInfo>h2 {
             font-size: 3.4rem;
         } 
+
+        .profilePage > button.followUnfollowBtn{
+            padding: 0.3rem 0.7rem;
+            border: 1px solid #ED5AB3;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
     
         .profilePage>.follows {
             display: flex;

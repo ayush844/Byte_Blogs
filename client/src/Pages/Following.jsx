@@ -50,6 +50,10 @@ const Following = () => {
     <div className='followingPage'>
       <h2 className='heading'>your favourite <span style={{color: '#ED5AB3'}}>writers</span></h2>
 
+      {getFollowingSuccess && followings.length === 0 && <div style={{width:'100vw', height:'100vh',display:'flex', alignItems:'flexStart', justifyContent:'center', flexWrap:'wrap'}}><p style={{textAlign:'center', marginTop:'3rem', fontSize:'1.6rem', color:'#ED5AB3'}}>YOU ARE NOT FOLLOWING ANYONE</p></div>}
+
+
+
       {
         getFollowingSuccess && followings.length > 0 && (
         <div className="followingCardBox">

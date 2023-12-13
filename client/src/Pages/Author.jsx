@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import BlogCardAuthor from '../Components/BlogCardAuthor.jsx';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import { useSelector } from 'react-redux';
 
 
 
@@ -20,13 +21,19 @@ const Author = () => {
     const [authorBlogSuccess, setAuthorBlogSuccess] = useState(false);
     const [authorBlog, setAuthorBlog] = useState(undefined);
 
+    const [isFollowingAuthor, setIsFollowingAuthor] = useState(false);
+
+    const {currentUser} = useSelector((state)=>state.user);
+
 
     console.log(loading);
     console.log(error);
 
-    author && console.log(author.avatar);
+    author && console.log(author);
     
     console.log(authorBlog);
+
+    console.log(isFollowingAuthor);
 
     useEffect(()=>{
         const fetchAuthor = async()=>{
@@ -47,6 +54,9 @@ const Author = () => {
                 setAuthor(data);
                 setLoading(false);
                 setError(false);
+
+                const isFollowing = currentUser.following.includes(params.id);
+                setIsFollowingAuthor(isFollowing);
 
             } catch (error) {
 
@@ -94,7 +104,17 @@ const Author = () => {
     },[author]);
     
 
+    const sameUser = currentUser._id === params.id;
 
+
+    const handleFollowUnfollow = async () => {
+    
+      await fetch(`/api/user/follow/${author._id}`,{
+        method: 'POST',
+      })
+
+      setIsFollowingAuthor(!isFollowingAuthor);
+    }
 
 //................................................................
   const responsive = {
@@ -122,18 +142,23 @@ const Author = () => {
     
   return (
     <main style={{padding: '0'}}>
-    {loading && <div style={{width:'100vw', height:'100vh',display:'flex', alignItems:'center', justifyContent:'center'}}><p style={{textAlign:'center', marginTop:'3rem', fontSize:'2rem', color:'#ED5AB3'}}>LOADING...</p></div>}
+    {loading && <div style={{width:'100vw', height:'100vh',display:'flex', alignItems:'flexStart', justifyContent:'center'}}><p style={{textAlign:'center', marginTop:'3rem', fontSize:'2rem', color:'#ED5AB3'}}>LOADING...</p></div>}
 
-    {error && <div style={{width:'100vw', height:'100vh',display:'flex', alignItems:'center', justifyContent:'center'}}><p style={{textAlign:'center', marginTop:'3rem', fontSize:'2rem', color:'red'}}>SOMETHING WENT WRONG !</p></div>}
+    {error && <div style={{width:'100vw', height:'100vh',display:'flex', alignItems:'flexStart', justifyContent:'center'}}><p style={{textAlign:'center', marginTop:'3rem', fontSize:'2rem', color:'red'}}>SOMETHING WENT WRONG !</p></div>}
+
     
     {
         author && authorBlogSuccess && 
-        <div className='profilePage'>        
+      <div className='profilePage'>        
 
         <div className="userInfo">
           <img src={author.avatar} alt="profile-pic" />
           <h2>{author.username}</h2>
         </div>
+
+        { !(sameUser) && (
+          <button className='followUnfollowBtn' onClick={handleFollowUnfollow}>{isFollowingAuthor ? "Unfollow":"Follow"}</button>
+        )}
   
         <div className="follows">
           <div className="following">
