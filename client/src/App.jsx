@@ -15,6 +15,7 @@ import PrivateRoute from './Components/PrivateRoute';
 import UpdateProfile from './Pages/UpdateProfile';
 import CreateBlog from './Pages/CreateBlog';
 import Author from './Pages/Author';
+import BlogPage from './Pages/BlogPage';
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
         <Route path='/sign-in' element={<SignIn/>} />
         <Route path='/sign-up' element={<SignUp />} />
         <Route path='/author/:id' element={<Author />} />
+        <Route path='/blog/:id' element={<BlogPage />} />
         <Route element={<PrivateRoute />}>
           <Route path='/profile' element={<Profile />} />
           <Route path='/updateProfile' element={<UpdateProfile />} />

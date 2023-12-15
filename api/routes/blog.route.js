@@ -1,5 +1,5 @@
 import express from "express";
-import { createBlog, deleteBlog, getLikes, likeDislikeBlog, updateBlog } from "../controllers/blog.controller.js";
+import { createBlog, deleteBlog, getBlog, getLikes, likeDislikeBlog, updateBlog } from "../controllers/blog.controller.js";
 import { verifyToken } from "../utils/verifyUser.js";
 
 
@@ -15,6 +15,8 @@ router.post('/update/:id', verifyToken, updateBlog);
 router.post('/like/:id', verifyToken, likeDislikeBlog);
 
 router.get('/getLikes/:id', getLikes);
+
+router.get('/getBlog/:id', getBlog);
 
 
 export default router;

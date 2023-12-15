@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+main{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    align-items: center;
+    margin-bottom: 5rem;
+
+}
+
+main > .blogPage{
+    margin-left: 3rem;
+    margin-top: 2rem;
+    width: 85vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+main > .blogPage > h2{
+    font-size: 3.5rem;
+    font-weight: 100;
+    margin-bottom: 2rem;
+}
+
+
+main > .blogPage > .blogCategory{
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    background-color: #ED5AB3;
+    border: none;
+    color: black;
+    margin: 0 0 2rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+main > .blogPage >.blogCategory:hover{
+    transform: scale(1.1);
+}
+
+main > .blogPage > .blogCategory > p{
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+
+
+main > .blogPage > .blogCover > img{
+    width: 60rem;
+    height: 30rem;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #ED5AB3;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+main > .blogPage > .blogBody{
+    margin-top: 3rem;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    font-family: 'Roboto', sans-serif;
+    width: 70%;
+}
+
+
+
+
+
+main > .blogPage > .blogAuthor{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 2rem 0 3rem;
+}
+
+main > .blogPage > .blogAuthor > p{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+
+main > .blogPage > .blogOptions{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 1rem 0 5rem;
+}
+
+
+
+@media (max-width: 1000px) {
+    main > .blogPage{
+        width: 80vw;
+        margin-left: 2rem;
+        margin-right: 1rem;
+    }
+}
