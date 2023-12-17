@@ -94,12 +94,16 @@ export const followUnfollowUser = async(req, res, next)=>{
         if(isFollowing){
             await User.findByIdAndUpdate(currentUser._id, {$pull: {following: userToFollowUnfollow._id}});
             await User.findByIdAndUpdate(userToFollowUnfollow._id, {$pull: {followers: currentUser._id}});
-            return res.status(200).json({message: "user unfollowed successfully"});
         }else{
             await User.findByIdAndUpdate(currentUser._id, {$addToSet: {following: userToFollowUnfollow._id}});
             await User.findByIdAndUpdate(userToFollowUnfollow._id, {$addToSet: {followers: currentUser._id}});
-            return res.status(200).json({message: "user followed successfully"});
         }
+
+        // Re-fetch currentUser after the update
+        const updatedCurrentUser = await User.findById(req.user.id);
+        const newFollowing = updatedCurrentUser.following;
+        
+        return res.status(200).json(newFollowing);
 
     } catch (error) {
         next(error);

@@ -5,13 +5,16 @@ import { useParams } from 'react-router-dom'
 import BlogCardAuthor from '../Components/BlogCardAuthor.jsx';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { followUserFailure, followUserStart, followUserSuccess } from '../redux/user/userSlice.js';
 
 
 
 const Author = () => {
 
     const params = useParams();
+
+    const dispatch = useDispatch();
 
     const [loading, setLoading] = useState(false);
     const [author, setAuthor] = useState(null);
@@ -23,7 +26,7 @@ const Author = () => {
 
     const [isFollowingAuthor, setIsFollowingAuthor] = useState(false);
 
-    const {currentUser} = useSelector((state)=>state.user);
+    const {currentUser, following} = useSelector((state)=>state.user);
 
 
     console.log(loading);
@@ -34,6 +37,8 @@ const Author = () => {
     console.log(authorBlog);
 
     console.log(isFollowingAuthor);
+
+
 
     useEffect(()=>{
         const fetchAuthor = async()=>{
@@ -55,8 +60,7 @@ const Author = () => {
                 setLoading(false);
                 setError(false);
 
-                const isFollowing = currentUser.following.includes(params.id);
-                setIsFollowingAuthor(isFollowing);
+
 
             } catch (error) {
 
@@ -89,6 +93,9 @@ const Author = () => {
             setAuthorBlog(data);
     
             console.log(authorBlog);
+
+            const isFollowing = following.includes(params.id);
+            setIsFollowingAuthor(isFollowing);
     
           } catch (error) {
     
@@ -108,12 +115,24 @@ const Author = () => {
 
 
     const handleFollowUnfollow = async () => {
-    
-      await fetch(`/api/user/follow/${author._id}`,{
-        method: 'POST',
-      })
+      try {
+        dispatch(followUserStart());
+        const res = await fetch(`/api/user/follow/${author._id}`,{
+          method: 'POST',
+        })
 
-      setIsFollowingAuthor(!isFollowingAuthor);
+        const data = await res.json();
+
+        if(data.success == false){          
+          dispatch(followUserFailure(data.message));
+          return;
+        }  
+        setIsFollowingAuthor(!isFollowingAuthor);
+        dispatch(followUserSuccess(data));
+      } catch (error) {
+        console.log(error.message);
+        dispatch(followUserFailure(error.message))
+      }
     }
 
 //................................................................
