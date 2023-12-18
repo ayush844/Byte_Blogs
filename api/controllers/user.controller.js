@@ -163,11 +163,14 @@ export const saveUnsaveBlog = async(req, res, next)=>{
 
         if(isSaved) {
             await User.findByIdAndUpdate(currentUser._id, {$pull: {bookmarks: blog._id}});
-            return res.status(200).json({message: "blog removed from bookmarks"});
         }else{
             await User.findByIdAndUpdate(currentUser._id, {$addToSet: {bookmarks: blog._id}});
-            return res.status(200).json({message: "blog added to bookmarks"});
         }
+
+        const updatedUser = await User.findById(req.user.id);
+        const newBookmarks = updatedUser.bookmarks;
+
+        return res.status(200).json(newBookmarks);
 
     } catch (error) {
         next(error);

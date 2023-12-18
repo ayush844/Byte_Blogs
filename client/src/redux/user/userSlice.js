@@ -5,7 +5,8 @@ const initialState = {
   currentUser: null,
   error: null,
   loading: false,
-  following: null
+  following: null,
+  bookmarks: null
 }
 
 const userSlice = createSlice({
@@ -19,6 +20,7 @@ const userSlice = createSlice({
         state.loading=false;
         state.currentUser = action.payload;
         state.following = action.payload.following;
+        state.bookmarks = action.payload.bookmarks;
         state.error=null;
     },
     signInFailure: (state, action)=>{
@@ -26,6 +28,7 @@ const userSlice = createSlice({
         state.error=action.payload;
         state.currentUser=null;
         state.following = null;
+        state.bookmarks = null;
     },
     updateUserStart: (state)=>{
         state.loading = true;
@@ -34,6 +37,7 @@ const userSlice = createSlice({
         state.loading=false;
         state.currentUser = action.payload;
         state.following = action.payload.following;
+        state.bookmarks = action.payload.bookmarks;
         state.error=null;
     },
     updateUserFailure: (state, action)=>{
@@ -47,6 +51,7 @@ const userSlice = createSlice({
         state.loading=false;
         state.currentUser = null;
         state.following = null;
+        state.bookmarks = null;
         state.error=null;
     },
     deleteUserFailure: (state, action)=>{
@@ -60,6 +65,7 @@ const userSlice = createSlice({
         state.loading=false;
         state.currentUser = null;
         state.following = null;
+        state.bookmarks = null;
         state.error=null;
     },
     signOutUserFailure: (state, action)=>{
@@ -78,11 +84,24 @@ const userSlice = createSlice({
         state.loading=false;
         state.error=action.payload;
     },
+    bookmarkBlogStart: (state)=>{
+        state.loading = true;
+    },
+    bookmarkBlogSuccess: (state, action)=>{
+        state.loading=false;
+        state.following = action.payload;
+        state.bookmarks = action.payload;
+        state.error=null;
+    },
+    bookmarkBlogFailure: (state, action)=>{
+        state.loading=false;
+        state.error=action.payload;
+    },
 
   },
 })
 
 
-export const { signInStart, signInSuccess, signInFailure, updateUserStart, updateUserSuccess, updateUserFailure, deleteUserStart, deleteUserSuccess, deleteUserFailure, signOutUserStart, signOutUserSuccess, signOutUserFailure, followUserStart, followUserSuccess, followUserFailure } = userSlice.actions
+export const { signInStart, signInSuccess, signInFailure, updateUserStart, updateUserSuccess, updateUserFailure, deleteUserStart, deleteUserSuccess, deleteUserFailure, signOutUserStart, signOutUserSuccess, signOutUserFailure, followUserStart, followUserSuccess, followUserFailure, bookmarkBlogStart, bookmarkBlogSuccess, bookmarkBlogFailure } = userSlice.actions
 
 export default userSlice.reducer

@@ -12,6 +12,7 @@ import { FaBookmark } from "react-icons/fa";
 import DOMPurify from 'dompurify';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBlogFailure, fetchBlogStart, fetchBlogSuccess, likeBlogFailure, likeBlogStart, likeBlogSuccess } from '../redux/blog/blogSlice';
+import { bookmarkBlogFailure, bookmarkBlogStart, bookmarkBlogSuccess } from '../redux/user/userSlice';
 
 const BlogPage = () => {
 
@@ -19,7 +20,7 @@ const BlogPage = () => {
 
   const dispatch = useDispatch();
 
-  const {currentUser} = useSelector((state)=>state.user);
+  const {currentUser, bookmarks} = useSelector((state)=>state.user);
 
   const [loading, setLoading] = useState(false);
   const [blog, setBlog] = useState(null);
@@ -39,6 +40,7 @@ const BlogPage = () => {
 
   console.log(currentBlog);
   console.log(likes);
+  console.log(bookmarks);
 
   useEffect(()=>{
     const fetchBlog = async () => {
@@ -62,15 +64,6 @@ const BlogPage = () => {
         setBlog(data);
         setLoading(false);
         setError(false);
-        
-
-
-
-        // if(currentUser.bookmarks.includes(blog._id)){
-        //   setIsBookmarked(true);
-        // }
-
-
 
       } catch (error) {
         setError(true);
@@ -114,12 +107,20 @@ const BlogPage = () => {
 
           const liked = likes.includes(currentUser._id)
           setIsLiked(liked);
+
+          if(currentUser && bookmarks){
+            const bookmarked = bookmarks.includes(blog._id);
+            console.log(bookmarked);
+            setIsBookmarked(bookmarked);
+          }
+
   
 
 
         }
       } catch (error) {
         setError(true);
+        console.log(error);
         console.log("hello4");
         setLoading(false);
       }
@@ -135,8 +136,8 @@ const BlogPage = () => {
 
 
 
-  const toggleIsLiked = async (e)=>{
-    e.preventDefault();
+  const toggleIsLiked = async ()=>{
+    
     try {
       if(blog){
         dispatch(likeBlogStart());
@@ -158,6 +159,28 @@ const BlogPage = () => {
     } catch (error) {
       console.log(error);
       dispatch(likeBlogFailure(error.message));
+    }
+  }
+
+
+  const toggelIsBookmarked = async()=>{
+    try {
+      if(blog && currentUser && bookmarks){
+        dispatch(bookmarkBlogStart());
+        const res = await fetch(`/api/user/save/${blog._id}`,{
+          method: 'POST'
+        })
+        const data = await res.json();
+        if(data.success == false){
+          dispatch(bookmarkBlogFailure(data.message));
+          return;
+        }
+        setIsBookmarked(!isBookmarked);
+        dispatch(bookmarkBlogSuccess(data));
+      } 
+    } catch (error) {
+      console.log(error);
+      dispatch(bookmarkBlogFailure(error.message));
     }
   }
 
@@ -185,9 +208,18 @@ const BlogPage = () => {
             <p>by <span style={{color:'#ED5AB3', cursor:'pointer'}}>{author.username}</span></p>
           </div>
           <div className="blogOptions" style={{paddingBottom:'4rem'}}>
-            {isLiked ? <FaHeart onClick={toggleIsLiked} style={{fontSize:'1.7rem', cursor:'pointer', color:'red'}} /> : <FaRegHeart onClick={toggleIsLiked} style={{fontSize:'1.7rem', cursor:'pointer', color:'red'}} />}
+
+            {currentUser && (
+            <>
+            {isLiked ? (<FaHeart onClick={toggleIsLiked} style={{fontSize:'1.7rem', cursor:'pointer', color:'red'}} />) : (<FaRegHeart onClick={toggleIsLiked} style={{fontSize:'1.7rem', cursor:'pointer', color:'red'}} />)}
             
-            <FaRegBookmark  style={{fontSize:'1.7rem', cursor:'pointer', color:'#00A9FF'}} />
+            {isBookmarked ? (<FaBookmark onClick={toggelIsBookmarked} style={{fontSize:'1.7rem', cursor:'pointer', color:'#00A9FF'}} />) : (<FaRegBookmark onClick={toggelIsBookmarked} style={{fontSize:'1.7rem', cursor:'pointer', color:'#00A9FF'}} />)}
+            </>
+            )
+            }
+
+
+            
           </div>
         </div>
       )}
