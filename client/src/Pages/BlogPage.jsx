@@ -10,11 +10,14 @@ import { FaBookmark } from "react-icons/fa";
 
 
 import DOMPurify from 'dompurify';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchBlogFailure, fetchBlogStart, fetchBlogSuccess, likeBlogFailure, likeBlogStart, likeBlogSuccess } from '../redux/blog/blogSlice';
 
 const BlogPage = () => {
 
   const params = useParams();
+
+  const dispatch = useDispatch();
 
   const {currentUser} = useSelector((state)=>state.user);
 
@@ -28,14 +31,19 @@ const BlogPage = () => {
   const [isBookmarked, setIsBookmarked] = useState(false);
 
 
-  console.log(error);
+  const {currentBlog, likes} = useSelector((state)=>state.blog);
 
-  console.log(isLiked);
+  // console.log(error);
+
+  // console.log(isLiked);
+
+  console.log(currentBlog);
+  console.log(likes);
 
   useEffect(()=>{
     const fetchBlog = async () => {
       try {
-
+        dispatch(fetchBlogStart());
         setLoading(true);
         const res = await fetch(`/api/blog/getBlog/${params.id}`,{
           method: 'GET',
@@ -46,20 +54,21 @@ const BlogPage = () => {
           setError(true);
           console.log("hello1");
           setLoading(false);
+          dispatch(fetchBlogFailure(data.message));
           return;
         }
   
+        dispatch(fetchBlogSuccess(data));
         setBlog(data);
         setLoading(false);
         setError(false);
-
-        const liked = blog.likes.includes(currentUser._id)
-        setIsLiked(liked);
+        
 
 
-        if(currentUser.bookmarks.includes(blog._id)){
-          setIsBookmarked(true);
-        }
+
+        // if(currentUser.bookmarks.includes(blog._id)){
+        //   setIsBookmarked(true);
+        // }
 
 
 
@@ -67,6 +76,7 @@ const BlogPage = () => {
         setError(true);
         console.log("hello2");
         setLoading(false);
+        dispatch(fetchBlogFailure(error.message));
       }
 
     }
@@ -102,7 +112,9 @@ const BlogPage = () => {
           setLoading(false);
           setError(false);
 
-
+          const liked = likes.includes(currentUser._id)
+          setIsLiked(liked);
+  
 
 
         }
@@ -127,14 +139,25 @@ const BlogPage = () => {
     e.preventDefault();
     try {
       if(blog){
-        await fetch(`/api/blog/like/${blog._id}`,{
+        dispatch(likeBlogStart());
+        const res = await fetch(`/api/blog/like/${blog._id}`,{
           method:'POST'
         })
+
+        const data = await res.json();
+
+        if(data.success == false){          
+          dispatch(likeBlogFailure(data.message));
+          return;
+        } 
+        
         setIsLiked((prevIsLiked) => !prevIsLiked);
+        dispatch(likeBlogSuccess(data));
       }
 
     } catch (error) {
       console.log(error);
+      dispatch(likeBlogFailure(error.message));
     }
   }
 

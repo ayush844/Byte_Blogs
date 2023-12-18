@@ -69,11 +69,15 @@ export const likeDislikeBlog = async(req, res, next)=>{
 
         if(isLiked) {
             await Blog.findByIdAndUpdate(blog._id, {$pull: {likes: currentUser._id}});
-            return res.status(200).json({message: "blog disliked successfully"});
+            
         }else{
             await Blog.findByIdAndUpdate(blog._id, {$addToSet: {likes: currentUser._id}});
-            return res.status(200).json({message: "blog liked successfully"});
+            
         }
+
+        const updatedBlog = await Blog.findById(blog._id);
+        const newLikes = updatedBlog.likes;
+        return res.status(200).json(newLikes);
 
     } catch (error) {
         next(error);
