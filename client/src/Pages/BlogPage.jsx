@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import './BlogPage.css'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { FaPenNib } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { FaRegBookmark } from "react-icons/fa";
 import { FaBookmark } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
 
 
 
@@ -110,7 +111,6 @@ const BlogPage = () => {
 
           if(currentUser && bookmarks){
             const bookmarked = bookmarks.includes(blog._id);
-            console.log(bookmarked);
             setIsBookmarked(bookmarked);
           }
 
@@ -197,6 +197,14 @@ const BlogPage = () => {
       {blog && author && (
         <div className='blogPage'>
           <h2>{blog.title}</h2>
+          {currentUser && author._id === currentUser._id && (
+            <Link to={`/updateBlog/${blog._id}`} >
+            <div className="editBlog">
+              <FaEdit style={{fontSize:'2rem', color:'#7ED7C1'}} />
+              <p>edit blog</p>
+            </div>
+            </Link>
+          )}
           <div className='blogCategory'><p>{blog.category}</p></div>
           <div className="blogCover">
             <img src={blog.cover} alt="" />
@@ -205,7 +213,7 @@ const BlogPage = () => {
           </div>
           <div className="blogAuthor">
             <FaPenNib style={{color:'white', fontSize:'1.9rem'}}/>
-            <p>by <span style={{color:'#ED5AB3', cursor:'pointer'}}>{author.username}</span></p>
+            <p>by <Link to={`/author/${author._id}`}><span style={{color:'#ED5AB3', cursor:'pointer'}}>{author.username}</span></Link></p>
           </div>
           <div className="blogOptions" style={{paddingBottom:'4rem'}}>
 

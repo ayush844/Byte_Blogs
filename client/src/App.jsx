@@ -16,6 +16,7 @@ import UpdateProfile from './Pages/UpdateProfile';
 import CreateBlog from './Pages/CreateBlog';
 import Author from './Pages/Author';
 import BlogPage from './Pages/BlogPage';
+import UpdateBlog from './Pages/UpdateBlog';
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
           <Route path='/profile' element={<Profile />} />
           <Route path='/updateProfile' element={<UpdateProfile />} />
           <Route path='/createBlog' element={<CreateBlog />} />
+          <Route path='/updateBlog/:id' element={<UpdateBlog />} />
           <Route path='/bookmarks' element={<Bookmarks />} />
           <Route path='/following' element={<Following />} />
         </Route>

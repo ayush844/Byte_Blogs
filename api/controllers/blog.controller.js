@@ -120,3 +120,4 @@ export const getBlog = async(req, res, next)=>{
         next(error);
     }
 }
+
