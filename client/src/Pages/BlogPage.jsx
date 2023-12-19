@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import './BlogPage.css'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { FaPenNib } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { FaRegBookmark } from "react-icons/fa";
 import { FaBookmark } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 
 
 
@@ -18,6 +19,8 @@ import { bookmarkBlogFailure, bookmarkBlogStart, bookmarkBlogSuccess } from '../
 const BlogPage = () => {
 
   const params = useParams();
+
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -184,7 +187,23 @@ const BlogPage = () => {
     }
   }
 
-  
+  const handleDeleteBlog = async(id)=>{
+    try {
+      const res = await fetch(`/api/blog/delete/${id}`,{
+                    method:'DELETE'
+                  });
+      const data = await res.json();
+      if(data.success == false){
+        console.log(data.message);
+        return;
+      }
+
+      navigate('/profile');
+
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
 
   return (
@@ -225,10 +244,15 @@ const BlogPage = () => {
             </>
             )
             }
-
-
-            
           </div>
+
+          {blog && currentUser && author._id === currentUser._id && (
+            <div className="deleteBlog" onClick={() => handleDeleteBlog(blog._id)}>
+              <MdDelete style={{fontSize:'2.3rem', color:'#EF4040'}} />
+              <p>delete blog</p>
+            </div>
+          )}
+
         </div>
       )}
     </main>
