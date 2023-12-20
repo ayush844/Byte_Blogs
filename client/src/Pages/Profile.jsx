@@ -15,7 +15,7 @@ import 'react-multi-carousel/lib/styles.css';
 
 const Profile = () => {
 
-  const {currentUser, error} = useSelector((state)=>state.user);
+  const {currentUser, error, following} = useSelector((state)=>state.user);
 
   const navigate = useNavigate();
 
@@ -144,7 +144,7 @@ const Profile = () => {
       <div className="follows">
         <div className="following">
           <h4>FOLLOWING</h4>
-          <h3>{currentUser.following.length}</h3>
+          <h3>{following.length}</h3>
         </div>
         <div className="following">
           <h4>FOLLOWERS</h4>
