@@ -185,7 +185,7 @@ export const getBookmark = async(req, res, next) => {
 
         const currentUser = await User.findById(req.user.id);
 
-        const updatedCurrentUser = await currentUser.populate('bookmarks', "_id title summary cover category userRef");
+        const updatedCurrentUser = await currentUser.populate('bookmarks', "_id title summary cover category userRef likes");
 
         res.status(200).json(updatedCurrentUser.bookmarks);
 

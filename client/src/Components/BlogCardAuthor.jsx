@@ -12,7 +12,7 @@ const BlogCardAuthor = ({blog}) => {
 
   const {currentUser, error} = useSelector((state)=>state.user);
 
-  console.log(isLiked);
+  
 
   useEffect(()=>{
     const getLikes = async()=>{
