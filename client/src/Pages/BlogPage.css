@@ -145,4 +145,87 @@ main > .blogPage > .deleteBlog > p{
         margin-left: 2rem;
         margin-right: 1rem;
     }
+
+    
+    main > .blogPage > h2{
+        font-size: 3rem;
+        font-weight: 200;
+        margin-bottom: 1.5rem;
+    }
+    
+    main > .blogPage > a > .editBlog{
+        gap: 0.4rem;
+        padding: 0.3rem 1rem;
+        border: 2px solid #7ED7C1;
+        margin: 0 0 1.7rem;
+    }
+    
+    main > .blogPage > a > .editBlog > p{
+        font-size: 1rem;
+        font-weight: 300;
+    }
+    
+    
+    main > .blogPage > .blogCategory{
+        padding: 0.6rem 1rem;
+        margin: 0 0 1.6rem;
+    }
+    
+    main > .blogPage >.blogCategory:hover{
+        transform: none;
+    }
+    
+    main > .blogPage > .blogCategory > p{
+        font-size: 0.8rem;
+    }
+    
+    
+    
+    main > .blogPage > .blogCover > img{
+        width: 17rem;
+        height: 14rem;
+        margin-top: 1.5rem;
+        margin-bottom: 1.2rem;
+    }
+    
+    main > .blogPage > .blogBody{
+        margin-top: 1.2rem;
+        font-size: 1rem;
+        line-height: 1.2;
+        font-family: 'Roboto', sans-serif;
+        width: 80%;
+    }
+    
+    
+    
+    
+    
+    main > .blogPage > .blogAuthor{
+        gap: 0.3rem;
+        margin: 1.3rem 0 2rem;
+    }
+    
+    main > .blogPage > .blogAuthor > p{
+        font-size: 1.3rem;
+        font-weight: bold;
+    }
+    
+    
+    main > .blogPage > .blogOptions{
+        margin: 0.7rem 0 1.5rem;
+    }
+    
+    main > .blogPage > .deleteBlog{
+        gap: 0.3rem;
+        padding: 0.3rem 0.8rem;
+        border: 1.5px solid #EF4040;
+        margin: 0.6rem 0 5rem;
+        cursor: pointer;
+    }
+    
+    main > .blogPage > .deleteBlog > p{
+        font-size: 1rem;
+        font-weight: 400;
+    
+    }
 }
