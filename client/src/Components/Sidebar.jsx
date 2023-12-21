@@ -15,7 +15,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { FaFeather } from "react-icons/fa";
 
 
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import {useSelector} from 'react-redux'
 import { useEffect } from 'react';
@@ -75,7 +75,11 @@ const Sidebar = ({children}) => {
 
     const [isOpen, setIsOpen] = useState(false);
 
+    const [searchTerm, setSearchTerm] = useState('');
+
     const toggle = ()=>setIsOpen(!isOpen);
+
+    const navigate = useNavigate();
 
     const {currentUser} = useSelector((state)=>state.user);
 
@@ -122,6 +126,23 @@ const Sidebar = ({children}) => {
         }
     }
 
+    const handleChange = (value)=>{
+        setSearchTerm(value);
+        const urlParams = new URLSearchParams(window.location.search);
+        urlParams.set('searchTerm', value);
+        const searchQuery = urlParams.toString();
+        console.log(searchQuery);
+        navigate(`/search?${searchQuery}`);
+    }
+
+    useEffect(()=>{
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchTermFromUrl = urlParams.get('searchTerm');
+        if(searchTermFromUrl){
+            setSearchTerm(searchTermFromUrl);
+        }
+    },[location.search])
+
   return (
     
     <div className="main-container">
@@ -137,7 +158,7 @@ const Sidebar = ({children}) => {
                     <FaSearch style={{fontSize:'1.75rem', cursor:'pointer'}} onClick={!isOpen ? toggle : null}/>
                 </div>
                 <AnimatePresence>
-                    {isOpen && <motion.input initial='hidden' animate='show' exit='hidden' variants={inputAnimation} placeholder='Search' />}
+                    {isOpen && <motion.input initial='hidden' animate='show' exit='hidden' variants={inputAnimation} placeholder='Search' onChange={(e)=>handleChange(e.target.value)} value={searchTerm} />}
                 </AnimatePresence>
             </div>
             <section className='routes'>
