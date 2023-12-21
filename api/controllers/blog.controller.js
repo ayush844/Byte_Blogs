@@ -121,3 +121,41 @@ export const getBlog = async(req, res, next)=>{
     }
 }
 
+
+export const getBlogs = async (req, res, next)=>{
+    try {
+
+        const limit = parseInt(req.query.limit) || 5;
+
+        const startIndex = parseInt(req.query.startIndex) || 0;
+
+
+        let category = req.query.category;
+
+        if(category === undefined || category === 'all'){
+            category = {$in: ["technology", "lifestyle", "business_and_finance", "entertainment", "science_and_education", "personal", "others"]}
+        }
+
+        const searchTerm = req.query.searchTerm || '';
+
+        const sort = req.query.sort || 'createdAt';
+
+        const order = req.query.order || 'desc';
+
+        const blog = await Blog.find({
+            title: {$regex: searchTerm, $options: 'i'},
+            category,
+        }).sort(
+            {[sort]: order}
+        ).limit(limit).skip(startIndex);
+
+
+        return res.status(200).json(blog);
+
+
+
+        
+    } catch (error) {
+        next(error);
+    }
+}

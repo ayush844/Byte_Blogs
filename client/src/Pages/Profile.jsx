@@ -49,6 +49,7 @@ const Profile = () => {
   };
 //.....................................................................
 
+  console.log(currentUser);
   console.log(currentUser.following.length);
 
 
