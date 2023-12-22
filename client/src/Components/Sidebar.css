@@ -32,7 +32,7 @@ h1.logo{
     cursor: pointer;
     font-family: 'Acme', sans-serif;
     white-space: nowrap;
-    color: white;
+    color: #ED5AB3;
 }
 
 .bars{
@@ -69,13 +69,13 @@ h1.logo{
 }
 
 .navOptions:hover{
-    border-right: 0.5rem solid white;
+    border-right: 0.5rem solid #ED5AB3;
     transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
     background: rgb(45, 51, 89);
 }
 
 .active{
-    border-right: 0.5rem solid white;
+    border-right: 0.5rem solid #ED5AB3;
     background: rgb(45, 51, 89);
 }
 

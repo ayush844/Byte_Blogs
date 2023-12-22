@@ -37,7 +37,7 @@ const App = () => {
           <Route path='/bookmarks' element={<Bookmarks />} />
           <Route path='/following' element={<Following />} />
         </Route>
-        <Route path='/explore' element={<Explore />} />
+        <Route path='/search' element={<Explore />} />
 
       </Routes>
     </Sidebar>

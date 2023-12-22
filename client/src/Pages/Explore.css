@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@500&display=swap');
+
+main{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    align-items: center;
+    margin-bottom: 5rem;
+    gap: 3rem;
+}
+
+main > .blogOptionsBlock{
+    margin-left: 3rem;
+    margin-top: 2rem;
+    width: 85vw;
+    /* min-height: 100vh; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+main > .blogOptionsBlock > h3{
+    font-size: 3rem;
+    font-weight: bold;
+    background: linear-gradient(to right, #FF6EC7, #FFFFFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+main > .blogOptionsBlock > .blogOptions{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    /* align-items: center; */
+    /* justify-content: center; */
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+main > .blogOptionsBlock > .blogOptions > button{
+    font-size: 1.5rem;
+    font-weight: 200;
+    /* padding: 0.8rem 1.2rem; */
+    background-color: #ED5AB3;
+    border-radius: 10px;
+    color: black;
+    border: none;
+    width: 17rem;
+    height: 5rem;
+    cursor: pointer;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+main > .blogOptionsBlock > .blogOptions > button.active{
+    font-size: 1.5rem;
+    font-weight: 200;
+    border-radius: 10px;
+    /* padding: 0.8rem 1.2rem; */
+    background-color: #ED5AB3;
+    color: black;
+    border: 5px solid #BDF2D5;
+    width: 17rem;
+    height: 5rem;
+    cursor: pointer;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+main > .blogsFound{
+    margin-left: 3rem;
+    margin-top: 2rem;
+    width: 85vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+main > .blogsFound > h2{
+    font-size: 4rem;
+    font-weight: bold;
+    background: linear-gradient(to right, #F73D93, #FFFFFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
