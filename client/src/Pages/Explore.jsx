@@ -20,6 +20,8 @@ const Explore = () => {
 
   console.log(blogs)
 
+  const categoryArray = ['all', 'technology', 'lifestyle', 'business_and_finance', 'entertainment', 'science_and_education', 'personal', 'others'];
+
   useEffect(()=>{
     const urlParams = new URLSearchParams(location.search);
 
@@ -30,7 +32,7 @@ const Explore = () => {
     if(searchTermFromUrl || categoryFromUrl){
         setSideBarData({
             searchTerm: searchTermFromUrl || '',
-            category: categoryFromUrl || 'all',
+            category: categoryFromUrl || categoryArray[selectedButton],
         })
     }
 
@@ -41,6 +43,7 @@ const Explore = () => {
         const res = await fetch(`/api/blog/get?${searchQuery}`);
         const data = await res.json();
 
+        console.log(data);
         // if(data.length > 8){
         //     setShowMore(true);
         // }else{
@@ -60,16 +63,16 @@ const Explore = () => {
 
     setSelectedButton(buttonId);
 
-    handleFind();
+    handleFind(buttonId);
 
 
   }
 
-  const handleFind = ()=>{
-    const categoryArray = ['all', 'technology', 'lifestyle', 'business_and_finance', 'entertainment', 'science_and_education', 'personal', 'others'];
+  const handleFind = (id)=>{
+
 
     const urlParams = new URLSearchParams();
-    urlParams.set('category', categoryArray[selectedButton]);
+    urlParams.set('category', categoryArray[id]);
 
     urlParams.set('searchTerm', sideBarData.searchTerm);
 
@@ -86,14 +89,14 @@ const Explore = () => {
       <div className="blogOptionsBlock">
         <h3>CATEGORY:</h3>
         <div className="blogOptions">
-          <button className={selectedButton === 0 ? 'active': ''} onClick={()=>handleClick(0)} id='all'>All</button>
-          <button className={selectedButton === 1 ? 'active': ''} onClick={()=>handleClick(1)} id='technology'>Technology</button>
-          <button className={selectedButton === 2 ? 'active': ''} onClick={()=>handleClick(2)} id='lifestyle'>Lifestyle</button>
-          <button className={selectedButton === 3 ? 'active': ''} onClick={()=>handleClick(3)} id='business_and_finance'>Business and Finance</button>
-          <button className={selectedButton === 4 ? 'active': ''} onClick={()=>handleClick(4)} id='entertainment'>Entertainment</button>
-          <button className={selectedButton === 5 ? 'active': ''} onClick={()=>handleClick(5)} id='science_and_education'>Science and Education</button>
-          <button className={selectedButton === 6 ? 'active': ''} onClick={()=>handleClick(6)} id='personal'>Personal</button>
-          <button className={selectedButton === 7 ? 'active': ''} onClick={()=>handleClick(7)} id='others'>Others</button>
+          <button className={sideBarData.category === 'all' ? 'active': ''} onClick={()=>handleClick(0)} id='all'>All</button>
+          <button className={sideBarData.category === 'technology' ? 'active': ''} onClick={()=>handleClick(1)} id='technology'>Technology</button>
+          <button className={sideBarData.category === 'lifestyle' ? 'active': ''} onClick={()=>handleClick(2)} id='lifestyle'>Lifestyle</button>
+          <button className={sideBarData.category === 'business_and_finance' ? 'active': ''} onClick={()=>handleClick(3)} id='business_and_finance'>Business and Finance</button>
+          <button className={sideBarData.category === 'entertainment' ? 'active': ''} onClick={()=>handleClick(4)} id='entertainment'>Entertainment</button>
+          <button className={sideBarData.category === 'science_and_education' ? 'active': ''} onClick={()=>handleClick(5)} id='science_and_education'>Science and Education</button>
+          <button className={sideBarData.category === 'personal' ? 'active': ''} onClick={()=>handleClick(6)} id='personal'>Personal</button>
+          <button className={sideBarData.category === 'others' ? 'active': ''} onClick={()=>handleClick(7)} id='others'>Others</button>
         </div>
       </div>
       <div className="blogsFound">

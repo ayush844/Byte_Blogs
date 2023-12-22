@@ -34,7 +34,7 @@ const routes = [
         icon: <IoInformationCircleSharp style={{fontSize:'1.75rem'}} />
     },
     {
-        path: "/explore",
+        path: "/search",
         name: "Explore",
         icon: <SiWpexplorer style={{fontSize:'1.75rem'}}/>
     },
