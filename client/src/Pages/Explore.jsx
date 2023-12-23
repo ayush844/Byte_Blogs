@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react'
 import './Explore.css'
 import { useNavigate } from 'react-router-dom';
+import BlogCardAuthor from '../Components/BlogCardAuthor';
+import Pagination from '../Components/Pagination';
 
 const Explore = () => {
 
@@ -17,6 +19,24 @@ const Explore = () => {
   const [loading, setLoading] = useState(false);
 
   const [blogs, setBlogs] = useState([]);
+
+
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(8);
+
+
+  const lastPostIndex = currentPage * postsPerPage;
+  const firstPostIndex = lastPostIndex - postsPerPage;
+
+  const currentPosts = blogs.slice(firstPostIndex, lastPostIndex);
+  
+  
+  
+  
+
+
+
 
   console.log(blogs)
 
@@ -101,6 +121,26 @@ const Explore = () => {
       </div>
       <div className="blogsFound">
         <h2>BLOGS:</h2>
+
+        {blogs && blogs.length == 0 && 
+          <div className='blogsBlock'>
+            <p>NO BLOG FOUND OF THE SELECTED CATEGORY</p>
+          </div>
+        }
+
+        {
+          blogs && 
+          <Pagination totalPosts={blogs.length} postsPerPage={postsPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage}/>
+        }
+
+        {blogs && blogs.length>0 && 
+          <div className='blogsBlock'>
+            {currentPosts.map((blog)=>
+              <BlogCardAuthor key={blog._id} blog={blog} />
+            )}
+          </div>
+        }
+        
       </div>
       
     </main>

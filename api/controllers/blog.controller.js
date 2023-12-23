@@ -125,9 +125,9 @@ export const getBlog = async(req, res, next)=>{
 export const getBlogs = async (req, res, next)=>{
     try {
 
-        const limit = parseInt(req.query.limit) || 5;
+        // const limit = parseInt(req.query.limit) || 10;
 
-        const startIndex = parseInt(req.query.startIndex) || 0;
+        // const startIndex = parseInt(req.query.startIndex) || 0;
 
 
         let category = req.query.category;
@@ -147,7 +147,7 @@ export const getBlogs = async (req, res, next)=>{
             category,
         }).sort(
             {[sort]: order}
-        ).limit(limit).skip(startIndex);
+        );
 
 
         return res.status(200).json(blog);
