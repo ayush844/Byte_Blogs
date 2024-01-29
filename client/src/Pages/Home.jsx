@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React, { useRef } from "react";
-import "./Home.css";
 import styled, { ThemeProvider } from "styled-components";
 import { dark } from "./Styles/Theme";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";

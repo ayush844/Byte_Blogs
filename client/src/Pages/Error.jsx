@@ -1,5 +1,4 @@
 import React from "react";
-import "./Error.css";
 import styled from "styled-components";
 import error from "../assets/error.png";
 
