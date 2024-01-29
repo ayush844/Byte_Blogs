@@ -250,13 +250,13 @@ const CreateBlog = () => {
             padding: "0",
             border: "1px solid #ED5AB3",
             width: "70%",
-            marginBottom: "4rem",
+            marginBottom: "1rem",
           }}
           onChange={(value) => setFormData({ ...formData, blogBody: value })}
           id="blogBody"
         />
 
-        <div className="category" style={{ marginTop: "2rem" }}>
+        <div className="category" style={{ marginTop: "3rem" }}>
           <label htmlFor="dropdown">Select the category for your blog:</label>
 
           <div className="categoryArea">

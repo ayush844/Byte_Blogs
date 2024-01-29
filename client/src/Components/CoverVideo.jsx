@@ -65,7 +65,7 @@ const Title = styled.div`
       flex-wrap: wrap;
     }
     h1 {
-      font-size: 3.15em;
+      font-size: 3em;
     }
     h2 {
       font-size: ${(props) => props.theme.fontmd};
